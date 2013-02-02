@@ -1,0 +1,192 @@
+<!--#include("./_header.html")-->
+
+<!--// datepicker javascript plugin load -->
+<!--%load_js_plugin("ui.datepicker")-->
+<!--@if( $search_type == 'date' )-->
+	{@$s_created_at=$search_keyword}
+<!--@else-->
+    {@$s_created_at=date(Ymd)}
+<!--@end-->
+
+{$_SERVER['HTTP_USER_AGENT']}
+
+<h4 class="xeAdmin">검색</h4>
+<div>
+    <form action="./" method="get">
+    <input type="hidden" name="module" value="{$module}" />
+    <input type="hidden" name="act" value="{$act}" />
+        <fieldset>
+			기간 : 
+			<input type="hidden" name="created_at" id="created_at" value="{$created_at}" />
+			<input type="text" value="{$created_at}" readonly="readonly" class="inputDate inputTypeText font_numeric" />
+			~
+			<input type="hidden" name="created_at_end" id="created_at_end" value="{$created_at_end}" />
+			<input type="text" value="{$created_at_end}" readonly="readonly" class="inputDate inputTypeText font_numeric" />
+			/
+			<select name="search_step">
+                <option value="">주문상태</option>
+                <option value="0">주문신청</option>
+                <option value="1">결제완료</option>
+                <option value="2">배송준비</option>
+                <option value="3">배송중</option>
+                <option value="4">배송완료</option>
+                <option value="5">구매확정</option>
+                <option value="6">주문중</option>
+                <option value="7">주문취소</option>
+                <option value="8">환불신청</option>
+                <option value="9">환불완료</option>
+                <option value="10">판매거부</option>
+                <option value="11">반품신청</option>
+                <option value="12">반품완료</option>
+                <option value="13">교환신청</option>
+                <option value="14">교환완료</option>
+            </select>
+			<select name="search_target">
+                <option value="">{$lang->search_target}</option>
+                <option value="purchase_srl" <!--@if( $search_target == 'purchase_srl' )-->selected="selected"<!--@end-->>{$lang->shopxe_purchase_srl}</option>
+                <option value="name" <!--@if( $search_target == 'name' )-->selected="selected"<!--@end-->>{$lang->o_user_name}</option>
+                <option value="o_cellular" <!--@if( $search_target == 'o_cellular' )-->selected="selected"<!--@end-->>{$lang->o_cellular}</option>
+                <option value="o_phone" <!--@if( $search_target == 'o_phone' )-->selected="selected"<!--@end-->>{$lang->o_phone}</option>
+            </select>
+			<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="inputTypeText" />
+            <span class="button black strong"><input type="submit" value="{$lang->cmd_search}" /></span>
+            <a href="#" onclick="location.href='{getUrl('','module',$module,'act',$act)}';return false;" class="button"><span>{$lang->cmd_cancel}</span></a>
+        </fieldset>
+    </form>
+</div>
+
+<h4 class="xeAdmin">주문목록</h4>
+<table cellspacing="0" class="rowTable">
+<caption>Total {number_format($page_navigation->total_count)}, Page {number_format($page_navigation->cur_page)}/{number_format($page_navigation->total_page)}</caption>
+<thead>
+    <tr>
+        <th scope="col"><div>{$lang->no}</div></th>
+        <th scope="col"><div>{$lang->shopxe_purchase_srl}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_head_product}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_order_info}</div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div>{$lang->shopxe_list_pay_info}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_head_purchase_state}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_regdate}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_function}</div></th>
+    </tr>
+    <tr>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div></div></th>
+        <th scope="col"><div>({$lang->shopxe_list_editdate})</div></th>
+        <th scope="col"><div></div></th>
+    </tr>
+</thead>
+<tbody>
+    <!--@if( $row_list == null )-->
+        <tr>
+            <td colspan="11">{$lang->shopxe_nolist}</td>
+        </tr>
+    <!--@else-->
+		{@ $_line_idx = 0;}
+		<!--@foreach($row_list as $no => $val)-->
+        <!--@if( ($_line_idx%2) == 0 )-->{@ $_tr_type = "tr1";}<!--@else-->{@ $_tr_type = "tr2";}<!--@end-->
+        <tr>
+            <td class="{$_tr_type}">{$no}</td>
+            <td class="{$_tr_type}">{$val->purchase_srl}</td>
+            <td class="{$_tr_type}">
+				<!--@foreach($val->purchase_items as $no1 => $val1)-->
+				{@$output_item = $val1->get('item')}
+					<div>
+					<a href="{getUrl('act','dispShopxeAdminPurchaseManage','purchase_srl',$val->purchase_srl)}" >
+					<!--@if($output_item->getThumbnail(70,40,'crop') == null)-->
+						<img src="img/noimage.gif" width="70" height="40" />
+					<!--@else-->
+						<img src="{$output_item->getThumbnail(70,40,'crop')}" width="70" height="40" />
+					<!--@end-->
+					{$output_item->get('title')}
+					</a>
+					</div>
+				<!--@end-->
+            </td>
+            <td class="{$_tr_type}">
+            	<a href="{getUrl('act','dispShopxeAdminPurchaseManage','purchase_srl',$val->purchase_srl)}" >
+            	{$val->o_user_name}({$val->o_cellular})
+                
+            </td>
+            <td class="{$_tr_type}">
+			</td>
+            <td class="{$_tr_type}"><div></div></td>
+            <td class="{$_tr_type}">
+            	{number_format($val->order_amount+$val->delivery_amount-$val->discount_amount)} {$lang->money_unit}<br />
+                ({$val->payment_type})
+                <p>* 주문금액 : {number_format($val->order_amount)} {$lang->money_unit}<br />
+                * 배송비 : {number_format($val->delivery_amount)} {$lang->money_unit}<br />
+                * 할인금액 : {number_format($val->discount_amount)} {$lang->money_unit}</p>
+                
+            </td>
+            <td class="{$_tr_type}">
+            	{$val->payment_state}
+            </td>
+            <td class="{$_tr_type}">{zdate($val->created_at,"Y-m-d")}</td>
+            <td class="{$_tr_type}">
+                <a href="{getUrl('act','dispShopxeAdminPurchaseManage','purchase_srl',$val->purchase_srl)}" class="buttonSet buttonSetting"><span>{$lang->cmd_setup}</span></a>
+                <a href="{getUrl('act','dispShopxeAdminDeletePurchase','purchase_srl', $val->purchase_srl)}" class="buttonSet buttonDelete"><span>{$lang->cmd_delete}</span></a>
+            </td>
+        </tr>
+        <tr>
+            <td class="{$_tr_type}"></td>
+            <td class="{$_tr_type}"><img src="img/icon_delivery.gif"/></td>
+            <td colspan="5" class="{$_tr_type}">
+            	{$val->r_user_name}({$val->r_cellular})/({$val->ord_mail})<br />
+                {$val->r_addr}{$val->r_addr_1}
+            </td>
+            <td class="{$_tr_type}">
+				<!--@if($val->transmit_info!=null)-->
+				<div>{$val->transmit_info->transmit_info_business}</div>
+				<div>({$val->transmit_info->transmit_info_number})</div>
+				<!--@else-->
+				-
+				<!--@end-->
+            </td>
+            <td class="{$_tr_type}"><!--@if($val->created_at!=$val->updated_at)-->({zdate($val->updated_at,"Y-m-d")})<!--@end--></td>
+            <td class="{$_tr_type}">&nbsp;</td>
+        </tr>
+		{@ $_line_idx++;}
+        <!--@end-->
+    <!--@end-->
+</tbody>
+</table>
+
+
+<!--@if( $row_list != null )-->
+<!-- 페이지 네비게이션 -->
+<div class="pagination a1">
+    <a href="{getUrl('page','','module_srl','')}" class="prevEnd">{$lang->first_page}</a> 
+    <!--@while($page_no = $page_navigation->getNextPage())-->
+        <!--@if($page == $page_no)-->
+            <strong>{$page_no}</strong> 
+        <!--@else-->
+            <a href="{getUrl('page',$page_no,'module_srl','')}">{$page_no}</a> 
+        <!--@end-->
+    <!--@end-->
+    <a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="nextEnd">{$lang->last_page}</a>
+</div>
+<!--@end-->
+
+<!--#include("./_footer.html")-->
+
+<script type="text/javascript">
+(function($){
+    $(function(){
+        var option = { gotoCurrent: false,yearRange:'-100:+10', onSelect:function(){
+
+            $(this).prev('input[type="hidden"]').val(this.value.replace(/-/g,""))}
+        };
+        $.extend(option,$.datepicker.regional['{$lang_type}']);
+        $(".inputDate").datepicker(option);
+    });
+})(jQuery);
+</script>

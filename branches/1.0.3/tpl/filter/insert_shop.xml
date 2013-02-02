@@ -1,0 +1,39 @@
+<filter name="insert_shop" module="shopxe" act="procShopxeInsertShop" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="mid" required="true" maxlength="40" filter="alpha_number" />
+        <node target="browser_title" required="true" maxlength="250" />
+    </form>
+    <parameter>
+        <param name="mid" target="mid" />
+        <param name="module_srl" target="module_srl" />
+        <param name="module_category_srl" target="module_category_srl" />
+        <param name="browser_title" target="browser_title" />
+        <param name="layout_srl" target="layout_srl" />
+        <param name="skin" target="skin" />
+        <param name="shopxe_payment" target="shopxe_payment" />
+        <param name="shopxe_payment_method" target="shopxe_payment_method" />
+        <param name="phone_fieldname" target="phone_fieldname" />
+        <param name="cellular_fieldname" target="cellular_fieldname" />
+		<param name="addr_fieldname" target="addr_fieldname" />
+        <param name="transmit" target="transmit" />
+        <param name="transmit_free_use" target="transmit_free_use" />
+        <param name="transmit_free" target="transmit_free" />
+        <param name="point_use" target="point_use" />
+        <param name="point_min_use" target="point_min_use" />
+        <param name="banking_text" target="banking_text" />
+        <param name="exchange_text" target="exchange_text" />
+        <param name="attention_text" target="attention_text" />
+        <param name="list_count" target="list_count" />
+        <param name="page_count" target="page_count" />
+        <param name="description" target="description" />
+        <param name="header_text" target="header_text" />
+        <param name="footer_text" target="footer_text" />
+        <param name="is_default" target="is_default" />
+        <param name="layout_srl" target="layout_srl" />
+        <param name="skin" target="skin" />
+    </parameter>
+    <response callback_func="completeInsertShop">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

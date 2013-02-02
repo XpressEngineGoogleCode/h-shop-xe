@@ -1,0 +1,13 @@
+<query id="insertPurchaseItem" action="insert">
+    <tables>
+        <table name="shopxe_purchase_item" />
+    </tables>
+    <columns>
+		<column name="purchase_item_srl" var="purchase_item_srl" />
+		<column name="purchase_srl" var="purchase_srl" />
+		<column name="document_srl" var="document_srl" />
+		<column name="option" var="option" />
+		<column name="volume" var="volume" />
+		<column name="amount" var="amount" />
+    </columns>
+</query>

@@ -1,0 +1,16 @@
+<!--%import("css/shopxe.css")-->
+
+<div class="header4 gap1">
+    <ul class="localNavigation">
+    
+        <li <!--@if(strpos($act, 'dispShopxeAdminShopManage') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminShopManage')}">{$lang->shopxe_cmd_setup}</a></li>
+        <li <!--@if(strpos($act, 'dispShopxeAdminIndex') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminIndex')}">{$lang->shopxe_cmd_shopinfo}</a></li>
+        <li <!--@if(strpos($act, 'dispShopxeAdminPurchase') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminPurchaseList')}">{$lang->shopxe_cmd_order_list}</a></li>
+        <li <!--@if(strpos($act, 'dispShopxeAdminPayment') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminPaymentList')}">{$lang->shopxe_cmd_pay_list}</a></li>
+<!--
+        <li <!--@if(strpos($act, 'dispShopxeAdminLogInfo') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminLogInfo')}">통계분석</a></li>
+-->
+        <li <!--@if(strpos($act, 'dispShopxeAdminSkinInfo') > -1)-->class="on"<!--@end-->><a href="{getUrl('','module','admin','act','dispShopxeAdminSkinInfo')}">{$lang->shopxe_cmd_manage_skin}</a></li>
+        
+    </ul>
+</div>

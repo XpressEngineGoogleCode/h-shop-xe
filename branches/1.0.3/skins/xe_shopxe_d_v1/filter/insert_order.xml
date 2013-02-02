@@ -1,0 +1,14 @@
+<filter name="insert_order" module="shopxe" act="insertPurchaseCookie">
+	<form />
+    <parameter>
+        <param name="target_var" target="target_var" />
+        <param name="volume_var" target="volume_var" />
+        <param name="options_var" target="options_var" />
+    </parameter>
+    <response callback_func="completeInsertOrder">
+        <tag name="shopxe_mid" />
+        <tag name="insert_type" />
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

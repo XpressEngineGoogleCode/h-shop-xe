@@ -1,0 +1,11 @@
+<query id="getPurchaseInfo" action="delete">
+	<tables>
+		<table name="shopxe_purchase" alias="purchase" />
+	</tables>
+	<columns>
+		<column name="purchase.*" />
+	</columns>
+	<conditions>
+        <condition operation="equal" column="purchase_srl" var="purchase_srl" filter="number" notnull="notnull" />
+	</conditions>
+</query>

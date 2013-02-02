@@ -1,0 +1,12 @@
+<query id="getWish" action="select">
+	<tables>
+		<table name="shopxe_wish" />
+	</tables>
+	<columns>
+		<column name="*" />
+	</columns>
+	<conditions>
+        <condition operation="equal" column="product_srl" var="product_srl" filter="number" pipe="and" />
+        <condition operation="equal" column="member_srl" var="member_srl" filter="number" notnull="notnull" pipe="and" />
+	</conditions>
+</query>
