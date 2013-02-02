@@ -1,0 +1,35 @@
+<!--%import("../../tpl/js/product.js")-->
+
+<!--#include("_header.html")-->
+
+<!--@if($oDocument->isExists())-->
+<div class="viewProduct">
+	<!--#include("./view_document.html")-->
+</div>
+<!--@else -->
+
+<div class="viewProductList">
+
+	<!--// 목록 출력 -->
+	<!--@if($module_info->default_style == 'gallery')-->
+		<!--#include("./style.gallery.html")-->
+	<!--@elseif($module_info->default_style == 'list')-->
+		<!--#include("./style.list.html")-->
+	<!--@end-->
+
+	<!--@if($grant->manager)-->
+	<div class="productBottom">
+		<!-- 글쓰기, 목록 버튼 -->
+		<span class="leftButtonBox">
+				<a href="{getUrl('','module','document','act','dispDocumentManageDocument')}" onclick="popopen(this.href,'manageDocument'); return false;" class="button white"><span>{$lang->cmd_manage_product}</span></a>
+		</span>
+		<span class="rightButtonBox">
+			<a href="{getUrl('act','dispProductWrite','document_srl','')}" class="button green"><span>{$lang->cmd_write_product}</span></a>
+		</span>
+	</div>
+	<!--@end-->
+</div>
+<!--@end-->
+
+
+<!--#include("_footer.html")-->

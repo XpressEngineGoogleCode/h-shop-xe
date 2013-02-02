@@ -1,0 +1,71 @@
+<!--%import("js/thumb_manager.js")-->
+<!--%import("css/thumb_manager.css")-->
+
+<input type="hidden" name="master_image" id="master_image" value="{$master_image}" />
+<input type="hidden" name="thumb_sequence" value="" />
+<input type="hidden" name="tmp_thumb" value="" />
+
+<div class="xpress-editor2" style="display:none;">
+	<div id="smart_content"> <a href="#xe-editor-container-2" class="skip">&raquo; 편집 도구모음 건너뛰기</a>
+			<div class="tool off disable"></div>
+	</div>
+</div>
+
+<!-- 에디터 출력 -->
+<div id="xe-editor-container-2" class="input_area xpress_xeditor_editing_area_container" style="display:none;">
+    <textarea id="xpress-editor-2" cols="0" rows="0"></textarea>
+</div>
+<script type="text/javascript">//<![CDATA[
+	editorUploadInit(
+    {
+        "editorSequence" : 2,
+        "sessionName" : "PHPSESSID",
+        "allowedFileSize" : "{$file_config->allowed_filesize}",
+        "allowedFileTypes" : "*.jpg; *.jpeg; *.gif; *.bmp; *.png",
+        "allowedFileTypesDescription" : "*.*",
+        "insertedFiles" : 0,
+        "replaceButtonID" : "tUpload",
+        "fileListAreaID" : "uploaded_thumbnail",
+        "previewAreaID" : "ThumbPreview",
+        "uploaderStatusID" : "uploader_status_2"
+    }
+);
+//]]></script>
+
+<div class="thumbManager" style="height:100px;">
+	<div class="preview" id="ThumbPreview" style="overflow:hidden;" align="center">
+		<img src="blank.gif" style="display:none;" height="76">
+	</div>
+	<div class="fileListArea">
+		<select class="fileList" id="uploaded_thumbnail" size="4"><option></option></select>
+	</div>
+	<div class="fileUploadControl">
+		<span class="button" id="tUpload"><button type="button">{$lang->product_file_insert}</button></span>
+		<span class="button "><button type="button" onclick="removeUploadedFile('2');return false;">{$lang->product_file_delete}</button></span>
+		<div class="file_attach_info" id="uploader_status_2"></div>
+		<div style="margin-top:5px;">
+			<dl class="thumbManagerController">
+				<dt>{$lang->product_file_thumbnail}</dt>
+				<dd><input type="checkbox" id="isThumbnailCBox" />{$lang->product_file_thumbnail_chk}</dd>
+			</dl>
+		</div>
+	</div>
+</div>
+<!-- 에디터 활성화 -->
+<script type="text/javascript">//<![CDATA[
+    var editor_path = "./modules/editor/skins/xpresseditor/";
+    var oEditor = editorStart_xe("2", "thumb_sequence", "tmp_thumb", "10", "", "default",'','');
+//]]></script>
+
+{@$_SESSION['upload_info']["2"]->enabled = true;}
+<script type="text/javascript">
+	jQuery(document).ready(function () 
+	{
+		var write_obj = new Object();
+		write_obj["product_srl"] = "{$product_srl}";
+		write_obj["finder"] = "tUpload";
+		write_obj["list"] = "uploaded_thumbnail";
+		productThumbManager.initalize(write_obj); 
+
+	});
+</script>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module version="0.2">
+    <title xml:lang="ko">상품관리</title>
+    <title xml:lang="en">Product</title>
+	<title xml:lang="zh-CN">Product</title>
+    <title xml:lang="jp">Product</title>
+    <title xml:lang="es">Product</title>
+    <title xml:lang="ru">Product</title>
+    <title xml:lang="zh-TW">Product</title>
+    <description xml:lang="ko">상품관리의 기능을 담당하는 모듈. 상품관리의 생성/추가 관리등의 관리자 기능도 포함합니다.</description>
+    <description xml:lang="en">Module in charge of function of the product.</description>
+	<description xml:lang="zh-CN">Module in charge of function of the product.</description>
+    <description xml:lang="jp">Module in charge of function of the product.</description>
+    <description xml:lang="es">Module in charge of function of the product.</description>
+    <description xml:lang="ru">Module in charge of function of the product.</description>
+    <description xml:lang="zh-TW">Module in charge of function of the product.</description>
+    <version>1.0.2</version>
+    <date>2010-04-21</date>
+    <category>service</category>
+    <author email_address="deive@nate.com" link="http://www.iwebmall.co.kr">
+        <name xml:lang="ko">덧니희야</name>
+        <name xml:lang="en">Lee SuHee</name>
+        <name xml:lang="zh-CN">Lee SuHee</name>
+        <name xml:lang="jp">Lee SuHee</name>
+        <name xml:lang="es">Lee SuHee</name>
+        <name xml:lang="ru">Lee SuHee</name>
+        <name xml:lang="zh-TW">Lee SuHee</name>
+    </author>
+</module>

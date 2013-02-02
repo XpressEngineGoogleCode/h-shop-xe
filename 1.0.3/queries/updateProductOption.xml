@@ -1,0 +1,16 @@
+<query id="updateProductOption" action="update">
+    <tables>
+        <table name="product_option" />
+    </tables>
+    <columns>
+		<column name="document_srl" var="document_srl" />
+		<column name="option_parent_srl" var="option_parent_srl" />
+		<column name="option_name" var="option_name" />
+	    <column name="option_price" var="option_price" />
+	    <column name="option_req" var="option_req" />
+		<column name="at_index" var="at_index" />
+    </columns>
+    <conditions>
+        <condition operation="equal" column="option_srl" var="option_srl" filter="number" notnull="notnull" />
+    </conditions>
+</query>

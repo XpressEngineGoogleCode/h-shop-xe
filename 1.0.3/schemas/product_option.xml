@@ -1,0 +1,9 @@
+<table name="product_option">
+    <column name="option_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
+    <column name="document_srl" type="number" size="11" notnull="notnull" />
+    <column name="option_parent_srl" type="number" size="11" notnull="notnull" default="0" />
+    <column name="option_name" type="varchar" size="250" />
+    <column name="option_price" type="number" size="11" />
+    <column name="option_req" type="char" size="1" />
+    <column name="at_index" type="number" size="11" default="0" />
+</table>

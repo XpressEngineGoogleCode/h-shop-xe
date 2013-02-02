@@ -1,0 +1,22 @@
+<filter name="insert_option" module="product" act="procProductInsertOption" confirm_msg_code="confirm_submit">
+    <form>
+		<node target="option_price" filter="number" />
+	</form>
+    <parameter>
+        <param name="document_srl" target="document_srl" />
+        <param name="option_parent_srl" target="option_parent_srl" />
+        <param name="option_name" target="option_name" />
+        <param name="option_price" target="option_price" />
+        <param name="at_index" target="at_index" />
+        <param name="option_srl" target="option_srl" />
+        <param name="head_type" target="head_type" />
+        <param name="item_type" target="item_type" />
+    </parameter>
+    <response callback_func="completeInsertOption">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="mid" />
+        <tag name="act" />
+        <tag name="documnet_srl" />
+    </response>
+</filter>
