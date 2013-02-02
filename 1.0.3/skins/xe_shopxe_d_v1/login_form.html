@@ -1,0 +1,79 @@
+<!--#include("_header.html")-->
+<!--%import("../../tpl/js/shopxe.js")-->
+<!--%import("../../tpl/filter/insert_purchase.xml")-->
+<!--%import("filter/login.xml")-->
+
+<script type="text/javascript">
+    var keep_signed_msg = "{$lang->about_keep_signed}";
+    xAddEventListener(window, "load", function() { doFocusUserId('fo_member_login'); });
+
+	function completeLogin()
+	{
+		location.href = current_url;
+	}
+</script>
+<form action="./" method="post" onsubmit="return procFilter(this, login);" id="fo_member_login">
+
+<div class="titleBox">
+    <div class="subject"><h1><span>로그인하기</span></h1></div>
+    <div class="memo">
+		<span>쇼핑몰의 정상적인 이용을 위해서는 회원가입후 로그인해주세요.</span>
+    </div>
+</div>
+
+<div class="lineClear"></div>
+
+<div class="title_box">
+	<span class="title_subject">회원구매</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row">아이디</th>
+    <td>
+        <input type="text" name="user_id" class="inputTypeText w100" id="uid" />
+    </td>
+</tr>
+<tr>
+    <th scope="row">비밀번호</th>
+    <td>
+        <input type="password" name="password" class="inputTypeText w100" id="upw" />
+    </td>
+</tr>
+<tr>
+    <th scope="row" colspan="2"><span class="button strong"><input type="submit" value="로그인" /></span></th>
+</tr>
+<tr>
+    <td colspan="2">
+    * 회원가입을 아직 하지않으셨으면 회원가입후 사용해 주십시요.
+    <span class="btn"><a href="{getURL('act','dispMemberSignUpForm')}">회원가입</a></span>
+    </td>
+</tr>
+<tr>
+    <td colspan="2">
+    * 비밀번호가 기억나지 않을경우 비밀번호를 확인할 수 있습니다.
+    <span class="btn"><a href="{getURL('act','dispMemberFindAccount')}">비밀번호 찾기</a></span>
+    </td>
+</tr>
+</table>
+</form>
+
+
+<!--비회원 구매-->
+<!--@if($currCommand=='purchase')-->
+<div class="title_box">
+	<span class="title_subject">비회원 구매</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row">아이디</th>
+    <td>
+        <span class="btn"><a href="{getURL('ignore_login','1')}">비회원 구매하기</a></span>
+    </td>
+</tr>
+</table>
+			
+<!--@end-->
+
+<!--#include("_footer.html")-->

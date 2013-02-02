@@ -1,0 +1,55 @@
+<!--#include("./_header.html")-->
+
+<table cellspacing="0" class="rowTable">
+<caption>Total {number_format($page_navigation->total_count)}, Page {number_format($page_navigation->cur_page)}/{number_format($page_navigation->total_page)}</caption>
+<thead>
+    <tr>
+        <th scope="col"><div>{$lang->no}</div></th>
+        <th scope="col"><div>{$lang->mid}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->payment_order_srl}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->payment_type}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->payment_state}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->payment_result_code}</div></th>
+        <th scope="col"><div>{$lang->regdate}</div></th>
+    </tr>
+</thead>
+<tbody>
+    <!--@if( $row_list == null )-->
+        <tr>
+            <td colspan="7">{$lang->shopxe_nolist}</td>
+        </tr>
+    <!--@else-->
+    <!--@foreach($row_list as $no => $val)-->
+    <tr class="row{$cycle_idx}">
+        <td>{$no}</td>
+        <td>{$val->get('module_id')}</td>
+        <td><a href="{getUrl('order_srl',$val->get('order_srl'),'act','dispShopxeAdminPaymentManage')}">{$val->get('order_srl')}</a></td>
+        <td>{$val->getType()}</td>
+        <td>
+			<!--@if(0==$val->get('current_state'))-->결제대기<!--@end-->
+			<!--@if(1==$val->get('current_state'))-->결제실패<!--@end-->
+			<!--@if(2==$val->get('current_state'))-->결제완료<!--@end-->
+			<!--@if(3==$val->get('current_state'))-->결제취소(환불)<!--@end-->
+		</td>
+        <td>{$val->get('result_code')}</td>
+        <td>{zdate($val->get('pay_date'),"Y-m-d")}</td>
+    </tr>
+    <!--@end-->
+    <!--@end-->
+</tbody>
+</table>
+
+<!-- 페이지 네비게이션 -->
+<div class="pagination a1">
+    <a href="{getUrl('page','','module_srl','')}" class="prevEnd">{$lang->first_page}</a> 
+    <!--@while($page_no = $page_navigation->getNextPage())-->
+        <!--@if($page == $page_no)-->
+            <strong>{$page_no}</strong> 
+        <!--@else-->
+            <a href="{getUrl('page',$page_no,'module_srl','')}">{$page_no}</a> 
+        <!--@end-->
+    <!--@end-->
+    <a href="{getUrl('page',$page_navigation->last_page,'module_srl','')}" class="nextEnd">{$lang->last_page}</a>
+</div>
+
+<!--#include("./_footer.html")-->

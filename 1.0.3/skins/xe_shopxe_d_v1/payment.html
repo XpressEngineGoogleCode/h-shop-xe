@@ -1,0 +1,239 @@
+<!--#include("_header.html")-->
+<!--%import("../../tpl/js/shopxe.js")-->
+
+<div class="titleBox">
+    <div class="subject"><h1><span>주문내역확인 및 결제</span></h1></div>
+    <div class="memo">
+		<span>주문내역과 결제금액등을 정확하게 확인하시고 결제방법을 선택하여주십시요.</span>
+    </div>
+</div>
+
+<div class="lineClear"></div>
+
+<table class="shopList" summary="주문내역 목록리스트">
+<caption>주문내역 목록리스트</caption>
+<colgroup>
+    <col width="40%">
+    <col width="15%">
+    <col width="15%">
+    <col width="15%">
+    <col width="15%">
+</colgroup>
+<thead>
+<tr>
+    <th scope="col">상품</th>
+    <th scope="col">옵션</th>
+    <th scope="col">판매금액</th>
+    <th scope="col">수량</th>
+    <th scope="col">주문금액</th>
+</tr>
+</thead>
+<tbody>
+<!--@foreach($purchase_items as $no => $val)-->
+{@$output_item = $val->get('item')}
+    {@$output_options = explode(',',$val->get('options'))}
+	{@$sel_options = null}
+	{@$output_price = 0}
+	<!--@foreach($output_item->options as $key1 => $val1)-->
+		<!--@if( in_array( $val1->option_srl, $output_options ) )-->
+			{@$sel_options[] = $val1}
+			{@$output_price += $val1->option_price}
+		<!--@end-->
+	<!--@end-->
+	{@$output_price += $val->get('volume')*$output_item->get('price_sale')}
+{@$output_volume = $val->get('volume')}
+<tr>
+	<td>
+		<a href="{getUrl('','mid',$vid,'document_srl',$output_item->get('document_srl'))}">
+			<!--@if($output_item->getThumbnail(70,40,'crop') == null)-->
+			<img src="img/common/img_blank.gif" width="70" height="40" />
+			<!--@else-->
+			<img src="{$output_item->getThumbnail(70,40,'crop')}" width="70" height="40" />
+			<!--@end-->
+			{$output_item->get('title')}
+		</a>
+	</td>
+	<td>
+		{@$output_price = 0}
+		<!--@foreach($sel_options as $key1 => $val1)-->
+			선택옵션 : {$val1->option_name}<!--@if($val1->option_price)--> (+{$val1->option_price}원){@$output_price += $val1->option_price}<!--@end--> <br/>
+		<!--@end-->
+		<input type="hidden" name="option_{$output_item->get('document_srl')}" value="{$val->get('options')}" />
+	</td>
+    <td>{number_format($output_item->get('price_sale'))} 원</td>
+    <td>{number_format($output_volume)}</td>
+    <td>{number_format($output_volume*($output_item->get('price_sale')+$output_price))} 원</td>
+</tr>
+{@$total_price += $output_volume*($output_item->get('price_sale')+$output_price)}
+<!--@end-->
+</tbody>
+</table>
+
+<table class="priceBox">
+    <tr>
+        <td class="total" height="32">총 주문금액 : {number_format($total_price)} 원</td>
+    </tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">주문자 정보</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row" width="150px">주문자명</th>
+    <td>
+        {$purchase_info->get('o_user_name')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">전화번호</th>
+    <td>
+       {$purchase_info->get('o_phone')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">휴대전화번호</th>
+    <td>
+        {$purchase_info->get('o_cellular')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">E-Mail</th>
+    <td>
+        {$purchase_info->get('o_mail_id').'@'.$purchase_info->get('o_mail_host')}
+    </td>
+</tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">받으시는분</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row" width="150px">수령자명</th>
+    <td>
+        {$purchase_info->get('r_user_name')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">전화번호</th>
+    <td>
+        {$purchase_info->get('r_phone')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">휴대전화번호</th>
+    <td>
+        {$purchase_info->get('r_cellular')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">주소</th>
+    <td>
+        {$purchase_info->get('r_addr')}<br />
+        {$purchase_info->get('r_addr_1')}
+    </td>
+</tr>
+<tr>
+    <th scope="row">요청사항</th>
+    <td>
+        {$purchase_info->get('remark')}
+    </td>
+</tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">반품/교환기준</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row">반품/교환</th>
+    <td>
+        {$module_info->exchange_text}
+    </td>
+</tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">주의사항</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row">주의사항</th>
+    <td>
+        {$module_info->attention_text}
+    </td>
+</tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">결제하기</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row" width="150px">총 결제비용</th>
+    <td>
+		<p>
+        {number_format($purchase_info->get('payment_amount'))} 원<br/>
+		(주문비용: {number_format($total_price)} 원 + 배송비: {number_format( $purchase_info->get('delivery_amount'))} 원 - 사용포인트: {number_format( $purchase_info->get('discount_amount'))}{$lang->point_unit})
+		</p>
+    </td>
+</tr>
+<tr>
+    <th scope="row">결제방법</th>
+    <td>
+        <!--@if($module_info->shopxe_payment == null)-->
+            {$module_info->banking_text}
+        <!--@else-->
+            <!--@if($purchase_info->get('payment_call') == 'XX')-->
+                통장입금
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'CD')-->
+                신용카드
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'AB')-->
+                계좌이체
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'BK')-->
+                무통장(가상계좌)
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'HP')-->
+                휴대폰
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == '7A')-->
+                700 ARS
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'OC')-->
+                OK Cashbag
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'CM')-->
+                문화상품권
+            <!--@end-->
+            <!--@if($purchase_info->get('payment_call') == 'GM')-->
+                게임문화상품권
+            <!--@end-->
+        <!--@end-->
+    </td>
+</tr>
+<tr>
+    <th scope="row">결제하기</th>
+    <td>
+        <!--@if($module_info->shopxe_payment == null)-->
+			<div>{$module_info->banking_text}</div>
+			<a href="#" class="button white" onClick="doUpdateOrderState( '{$purchase_info->get('purchase_srl')}', '0', '{$module_info->mid}' ); return false;"><span>결제하기</span></a>
+        <!--@elseif($purchase_info->get('payment_call') == 'XX')-->
+			<div>{$module_info->banking_text}</div>
+			<a href="#" class="button white" onClick="doUpdateOrderState( '{$purchase_info->get('purchase_srl')}', '0', '{$module_info->mid}' ); return false;"><span>결제하기</span></a>
+        <!--@else-->
+            <a href="#" class="button white" onClick="startPayment(); return false;"><span>결제하기</span></a>
+        <!--@end-->
+    </td>
+</tr>
+</table>
+
+<!--#include("_footer.html")-->
