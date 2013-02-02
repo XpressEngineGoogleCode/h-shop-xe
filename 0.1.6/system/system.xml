@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SystemList>
+    <System>
+        <id>xpay</id>
+        <title>LGDacom XPay Lite</title>
+        <desc>
+            <![CDATA[
+XPay 시스템 입니다.  <br />
+웹모듈 방식이며, Windows와 Linux 둘다 사용가능합니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>데이콤 ID</require_item>
+            <require_item>Mert Key</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>kcp</id>
+        <title>KCP For Linux</title>
+        <desc>
+            <![CDATA[
+KCP For PHP 시스템 입니다. <br />
+TX 방식이며, Linux만 사용가능합니다.<br />
+<span style="font-weight:bold">modules/payment/system/kcp_lib 폴더의 chmod를 777로 해주셔야 정상결제됩니다.</span>
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>Site Code</require_item>
+            <require_item>Site Key</require_item>
+            <require_item>상점명</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>inipay4</id>
+        <title>INICIS INIPay TX Version 4</title>
+        <desc>
+            <![CDATA[
+Inicis Inipay 4 TX시스템입니다.<br />
+TX 방식이며, 리눅스시스템에서 돌아갑니다.<br />
+<span style="font-weight:bold">modules/payment/system/inipay4_lib 폴더내의 chmod를 777로 해주셔야 정상결제됩니다.</span><br/>
+등록은 <a href="http://www.inicis.com/" target="_blank">http://www.inicis.com/</a> 에서 하시면 됩니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>아이디</require_item>
+            <require_item>비밀번호</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>inipayflash</id>
+        <title>INICIS INIPay Flash Version 2</title>
+        <desc>
+            <![CDATA[
+INICIS INYPay Flash Version 2시스템입니다.<br />
+리눅스서버에서 돌아가며, 클라이언트는 다됩니당.<br />
+<span style="font-weight:bold">modules/payment/system/inipay4_lib 폴더의 chmod를 777로 해주셔야 정상결제됩니다.</span><br/>
+등록은 <a href="http://www.inicis.com/" target="_blank">http://www.inicis.com/</a> 에서 하시면 됩니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>아이디</require_item>
+            <require_item>비밀번호</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>teledit</id>
+        <title>Danal Teledit Mobile Phone Payment</title>
+        <desc>
+            <![CDATA[
+다날 텔레딧 핸드폰 소액결제<br />
+<span style="font-weight:bold">modules/payment/system/teledit_lib/bin 폴더에 다날에서 제공하는 실행파일들이 있어야 합니다.</span>
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>아이디</require_item>
+            <require_item>비밀번호</require_item>
+            <require_item>상품코드</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>teledit_banking</id>
+        <title>Danal Teledit Banking Payment</title>
+        <desc>
+            <![CDATA[
+다날 실시간 계좌이체<br />
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>아이디</require_item>
+            <require_item>비밀번호</require_item>
+            <require_item>상점명</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <!--
+    <System>
+        <id>ksnet</id>
+        <title>KSNET KSPay TX</title>
+        <desc>
+            <![CDATA[
+KSNet kspay TX시스템입니다.<br />
+TX 방식이며, 리눅스시스템에서 돌아갑니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>KSPAY 상점 아이디</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>easypay</id>
+        <title>한국정보통신 이지페이</title>
+        <desc>
+            <![CDATA[
+한국정보통신 이지페이 시스템입니다.<br />
+웹전송 방식이며, 윈도우와 리눅스시스템에서 돌아갑니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>몰 ID</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>
+    <System>
+        <id>tgcorp</id>
+        <title>KT 티지코프</title>
+        <desc>
+            <![CDATA[
+KT 티지코프 시스템입니다.<br />
+웹전송 방식이며, 윈도우와 리눅스시스템에서 돌아갑니다.
+            ]]>
+        </desc>
+        <require_data>
+            <require_item>몰 ID</require_item>
+            <require_item>TG코프 접근키</require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+            <require_item></require_item>
+        </require_data>
+        <testKey>Y</testKey>
+    </System>-->
+</SystemList>

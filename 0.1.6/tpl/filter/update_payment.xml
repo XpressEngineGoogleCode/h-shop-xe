@@ -1,0 +1,11 @@
+<filter name="update_payment" module="payment" act="procPaymentAdminPaymentManage" confirm_msg_code="confirm_update">
+    <form>
+        <node target="payment_mid" required="true" />
+        <node target="current_extra" required="true" />
+        <node target="payment_description" required="true" />
+	</form>
+    <response callback_func="completePaymentAddress">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

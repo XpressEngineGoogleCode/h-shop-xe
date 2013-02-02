@@ -1,0 +1,639 @@
+<!--@if(!$payment_param)-->
+
+<form action="./?{$qstr}" method="post">
+    <table cellspacing="0" class="rowTable">
+    <tr class="row2">
+        <th scope="row"><div>주문번호</div></th>
+        <td colspan="3"><input type="text" name="order_srl" value="{$tmp_order_srl}" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row">
+        <th scope="row"><div>주문자명</div></th>
+        <td colspan="3"><input type="text" name="buyer_name" value="ShopXE" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자연락처</div></th>
+        <td colspan="3"><input type="text" name="buyer_call" value="010-2041-0000" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자메일</div></th>
+        <td colspan="3"><input type="text" name="buyer_mail" value="lunyx@me.com" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자주소</div></th>
+        <td colspan="3"><input type="text" name="buyer_addr" value="서울시 강남구 역삼동 123-123" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문정보코드</div></th>
+        <td colspan="3"><input type="text" name="buy_code" value="15" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문정보</div></th>
+        <td colspan="3"><input type="text" name="buy_info" value="ShopXE Premium Edition" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>결제금액</div></th>
+        <td colspan="3"><input type="text" name="buy_amount" value="3000" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>결제방식</div></th>
+        <td colspan="3">
+					<select name="call_type">
+						<option value="CD">신용카드</option>
+						<option value="AB">계좌이체</option>
+						<option value="BK">무통장</option>
+						<option value="HP">휴대폰</option>
+						<option value="7A">700 ARS</option>
+						<option value="OC">OK Cashbag</option>
+						<option value="CM">문화상품권</option>
+						<option value="GM">게임문화상품권</option>
+						
+					</select>
+				</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>완료후이동페이지</div></th>
+        <td colspan="3"><input type="text" name="result_page" value="/?mid={$mid}&act=dispPaymentTestModeResult" class="inputTypeText w400" /></td>
+    </tr>
+    <tr>
+        <th class="button" colspan="4">
+            <span class="button black strong"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+        </th>
+    </tr>
+    </table>
+</form>
+
+<!--@else-->
+<table cellspacing="0" class="rowTable">
+    <tr class="row2">
+        <th scope="row"><div>주문번호</div></th>
+        <td colspan="3">{$args->order_srl}</td>
+    </tr>
+    <tr class="row">
+        <th scope="row"><div>주문자명</div></th>
+        <td colspan="3">{$args->buyer_name}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자연락처</div></th>
+        <td colspan="3">{$args->buyer_call}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자메일</div></th>
+        <td colspan="3">{$args->buyer_mail}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문자주소</div></th>
+        <td colspan="3">{$args->buyer_addr}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문정보코드</div></th>
+        <td colspan="3">{$args->buy_code}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>주문정보</div></th>
+        <td colspan="3">{$args->buy_info}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>결제금액</div></th>
+        <td colspan="3">{$args->buy_amount}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>결제방식</div></th>
+        <td colspan="3">{$args->call_type}</td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>완료후이동페이지</div></th>
+        <td colspan="3">{$args->result_page}</td>
+    </tr>
+    <tr>
+        <th class="button" colspan="4">
+            <span class="button black strong"><input type="button" onClick="startPayment()" value="결제하기" /></span>
+        </th>
+    </tr>
+    </table>
+<!--@end-->
+
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />

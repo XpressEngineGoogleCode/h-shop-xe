@@ -1,0 +1,69 @@
+<!--%import("filter/insert_payment.xml")-->
+<!--%import("filter/update_payment.xml")-->
+<!--#include("inc_PaymentHeader.html")-->
+
+
+
+<form action="./" method="post" onsubmit="return procFilter(this, <!--@if($payment_info->module_srl)-->update_payment<!--@else-->insert_payment<!--@end-->)">
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="module_srl" value="{$payment_info->module_srl}" />
+<input type="hidden" name="payment_description" value="{$payment_info->payment_description}" />
+    <table cellspacing="0" class="rowTable">
+    <tr class="row2">
+        <th scope="row"><div>{$lang->mid}</div></th>
+        <td colspan="3"><input type="text" name="payment_mid" value="{$payment_info->mid}" class="inputTypeText w400" /></td>
+    </tr>
+    <tr class="row">
+        <th scope="row"><div>{$lang->payment_system}</div></th>
+        <td colspan="3">
+            <select name="current_extra" id="CurrentExtra">
+            <option value="">선택하세요</option>
+            <!--@foreach($SystemList as $key => $val)-->
+            <option value="{$val->id->body}" <!--@if($payment_info->current_extra==$val->id->body)-->selected="true"<!--@end-->>{$val->title->body}</option>
+            <!--@end-->
+            </select>&nbsp;{$lang->payment_about_system}
+				<div class="extraContainer" id="extraContainer">
+					<div class="extraVariable" id="extra_0">
+						<div id="lbl_ex0" class="extraLabel"></div>
+						<input type="text" name="payment_extra_1" value="{$payment_info->extra_1}" class="inputTypeText w200" />
+					</div>
+					<div class="extraVariable" id="extra_1">
+						<div id="lbl_ex1" class="extraLabel"></div>
+						<input type="text" name="payment_extra_2" value="{$payment_info->extra_2}" class="inputTypeText w200" />
+					</div>
+					<div class="extraVariable" id="extra_2">
+						<div id="lbl_ex2" class="extraLabel"></div>
+						<input type="text" name="payment_extra_3" value="{$payment_info->extra_3}" class="inputTypeText w200" />
+					</div>
+					<div class="extraVariable" id="extra_3">
+						<div id="lbl_ex3" class="extraLabel"></div>
+						<input type="text" name="payment_extra_4" value="{$payment_info->extra_4}" class="inputTypeText w200" />
+					</div>
+					<div class="extraVariable" id="extra_4">
+						<div id="lbl_ex4" class="extraLabel"></div>
+						<input type="text" name="payment_extra_5" value="{$payment_info->extra_5}" class="inputTypeText w200" />
+					</div>
+					<div class="extraVariable" id="is_test">
+						<div class="extraLabel">{$lang->payment_test}</div>
+						<input type="radio" name="payment_testmode" value="N" <!--@if($payment_info->is_test=="N")-->checked="true"<!--@end-->/> 미사용
+						<input type="radio" name="payment_testmode" value="Y" <!--@if($payment_info->is_test=="Y")-->checked="true"<!--@end-->/> 사용
+						({$lang->payment_about_test})
+					</div>
+					<div class="extraDescription"></div>
+				</div>
+        </td>
+    </tr>
+    <tr class="row2">
+        <th scope="row"><div>{$lang->description}</div></th>
+        <td colspan="3">
+            <input type="text" name="description" value="{$payment_info->description}" class="inputTypeText w400" />
+            <p>{$lang->about_description}</p>
+        </td>
+    </tr>
+    <tr>
+        <th class="button" colspan="4">
+            <span class="button black strong"><input type="submit" value="{$lang->cmd_registration}" accesskey="s" /></span>
+        </th>
+    </tr>
+    </table>
+</form>
