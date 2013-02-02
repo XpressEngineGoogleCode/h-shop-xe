@@ -1,0 +1,23 @@
+<table name="products">
+	<column name="product_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" index="idx_product_srl" />
+    <column name="target_srl" type="number" size="11" default="0" notnull="notnull" index="idx_target_srl" />
+	<column name="code" type="varchar" size="50" />
+	
+	<column name="price_base" type="number" size="11" notnull="notnull" />
+	<column name="price_stand" type="number" size="11" notnull="notnull" />
+	<column name="price_sale" type="number" size="11" notnull="notnull" />
+
+	<column name="buyed_point" type="number" size="11" />
+
+	<column name="maker" type="varchar" size="50" />
+    <column name="brand" type="varchar" size="50" />
+    <column name="origin" type="varchar" size="50" />
+
+	<column name="master_image" type="varchar" size="50" />
+	<column name="image_align" type="text" />
+
+    <column name="stock" type="number" size="11" />
+	<column name="event_item" type="varchar" size="255" />
+    <column name="list_order" type="number" size="11" default="0" index="idx_list_order" />
+    <column name="best_order" type="number" size="11" default="0" index="idx_best_order" />
+</table>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants />
+    <permissions>
+        <permission action="dispPaymentTestMode" target="manager" />
+        <permission action="dispPaymentTestModeResult" target="manager" />
+        
+        <permission action="dispPaymentAdminPaymentList" target="manager" />
+        <permission action="dispPaymentAdminPaymentManage" target="manager" />
+        <permission action="dispPaymentAdminPaymentRemove" target="manager" />
+        
+        <permission action="procPaymentAdminConfigXml" target="manager" />
+        <permission action="procPaymentAdminPaymentManage" target="manager" />
+        <permission action="procPaymentAdminPaymentRemove" target="manager" />
+        
+        <permission action="dispPaymentAdminSettleList" target="manager" />
+        <permission action="dispPaymentAdminSettleInfo" target="manager" />
+    </permissions>
+
+    <actions>
+        <action name="dispPaymentCallback" type="view" />
+        <action name="dispPaymentProcess" type="view" />
+        <action name="dispPaymentTestMode" type="view" />
+        <action name="dispPaymentTestModeResult" type="view" />
+
+        <action name="dispPaymentAdminPaymentList" type="view" admin_index="true" standalone="true" />
+        <action name="dispPaymentAdminPaymentManage" type="view" />
+        <action name="dispPaymentAdminPaymentRemove" type="view" />
+
+        <action name="procPaymentProcess" type="controller" />
+        <action name="procPaymentAdminConfigXml" type="controller" />
+        <action name="procPaymentAdminPaymentManage" type="controller" standalone="true" />
+        <action name="procPaymentAdminPaymentRemove" type="controller" standalone="true" />
+
+        <action name="dispPaymentAdminSettleList" type="view" standalone="true" />
+        <action name="dispPaymentAdminSettleInfo" type="view" />
+
+		<action name="updateSettle" type="controller" />
+    </actions>
+</module>

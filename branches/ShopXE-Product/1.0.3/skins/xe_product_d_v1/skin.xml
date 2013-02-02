@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin version="0.2">
+    <title xml:lang="ko">상품관리 스킨(덧니희야 v1.0)</title>
+    <description xml:lang="ko">
+        XE 상품관리의 덧니희야 스킨입니다.
+    </description>
+    <version>1.0</version>
+    <date>2010-02-23</date>
+
+    <license>GPL v2 or later</license>
+
+    <author email_address="deive@nate.com" link="http://www.iwebmall.co.kr">
+        <name xml:lang="ko">이수희</name>
+        <name xml:lang="jp">Suhee Lee</name>
+        <name xml:lang="zh-CN">Suhee Lee</name>
+        <name xml:lang="en">Suhee Lee</name>
+        <name xml:lang="es">Suhee Lee</name>
+        <name xml:lang="zh-TW">Suhee Lee</name>
+    </author>
+
+    <colorset>
+        <color name="white" src="screenshot/white.gif">
+            <title xml:lang="ko">하얀색(기본)</title>
+            <title xml:lang="jp">白（デフォルト）</title>
+            <title xml:lang="zh-CN">白色（基本）</title>
+            <title xml:lang="en">White (default)</title>
+            <title xml:lang="es">Blanco (por defecto)</title>
+            <title xml:lang="zh-TW">白色(預設)</title>
+        </color>
+    </colorset>
+
+    <extra_vars>
+        <var name="default_style" type="select">
+            <title xml:lang="ko">목록출력 선택</title>
+            <description xml:lang="ko">목록을 표시하는 모양을 선택할 수 있습니다.</description>
+            <options value="gallery">
+                <title xml:lang="ko">갤러리</title>
+            </options>
+            <options value="list">
+                <title xml:lang="ko">리스트</title>
+            </options>
+        </var>
+        <var name="is_list_btn" type="select">
+            <title xml:lang="ko">목록에서 주문버튼 출력여부</title>
+            <description xml:lang="ko">목록을 표시하는 모양을 선택할 수 있습니다.</description>
+            <options value="no">
+                <title xml:lang="ko">출력안함</title>
+            </options>
+            <options value="yes">
+                <title xml:lang="ko">출력함</title>
+            </options>
+        </var>
+        <var name="subject_cut_size" type="text">
+            <title xml:lang="ko">제목 글자수</title>
+            <title xml:lang="jp">タイトルの文字数</title>
+            <title xml:lang="zh-CN">标题字数</title>
+            <title xml:lang="en">Length of Subject</title>
+            <title xml:lang="es">Length of Subject</title>
+            <title xml:lang="zh-TW">標題字數</title>
+            <description xml:lang="ko">제목 글자수를 지정할 수 있습니다. (0또는 비워주시면 자르지 않습니다)</description>
+            <description xml:lang="jp">タイトルの文字数を設定します（「0」または空欄の場合は、文字数を制限しません）。</description>
+            <description xml:lang="zh-CN">可以指定标题字数(0或留空为不限)。</description>
+            <description xml:lang="en">You may set length of title. (0 or blank value will not restrict the length)</description>
+            <description xml:lang="es">You may set length of title. (0 or blank value will not restrict the length)</description>
+            <description xml:lang="zh-TW">可指定標題字數(0或留白為不限制)。</description>
+        </var>
+        <var name="content_cut_size" type="text">
+            <title xml:lang="ko">내용 글자수</title>
+            <title xml:lang="jp">内容の文字数</title>
+            <title xml:lang="zh-CN">内容字数</title>
+            <title xml:lang="en">Length of Content</title>
+            <title xml:lang="es">Número de letras del Contenidos</title>
+            <title xml:lang="ru">Длина содержания</title>
+            <title xml:lang="zh-TW">內容字數</title>
+            <description xml:lang="ko">내용 글자수를 지정할 수 있습니다. (기본 240)</description>
+            <description xml:lang="jp">内容の文字数を指定します(デフォルト 240)。</description>
+            <description xml:lang="zh-CN">可以指定要显示的内容字数。(默认为240)</description>
+            <description xml:lang="en">Length of Content can be assigned. (default 240)</description>
+            <description xml:lang="es">El largo del Contenidos puede ser asignado. (Predefinido 240)</description>
+            <description xml:lang="ru">Длина содержания может быть присвоена. (стандарт: 240)</description>
+            <description xml:lang="zh-TW">可以指定要顯示的內容字數。(預設是240)</description>
+        </var>
+        <var name="thumbnail_type" type="select">
+            <title xml:lang="ko">썸네일 생성 방법</title>
+            <title xml:lang="jp">サムネール生成方法</title>
+            <title xml:lang="zh-CN">缩略图生成方式</title>
+            <title xml:lang="en">Type of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖建立方式</title>
+            <description xml:lang="ko">썸네일 생성 방법을 선택할 수 있습니다.</description>
+            <description xml:lang="jp">サムネールの生成方法を選択します。</description>
+            <description xml:lang="zh-CN">可以选择缩略图生成方式。</description>
+            <description xml:lang="en">Choose the type to create the thumnail.</description>
+            <description xml:lang="zh-TW">可選擇縮圖建立方式。</description>
+            <options value="crop">
+                <title xml:lang="ko">꽉 채우기</title>
+                <title xml:lang="jp">刈り込み</title>
+                <title xml:lang="zh-CN">裁减</title>
+                <title xml:lang="en">crop</title>
+                <title xml:lang="zh-TW">裁減</title>
+            </options>
+            <options value="ratio">
+                <title xml:lang="ko">비율 맞추기</title>
+                <title xml:lang="jp">比率</title>
+                <title xml:lang="zh-CN">比例</title>
+                <title xml:lang="en">ratio</title>
+                <title xml:lang="zh-TW">比例</title>
+            </options>
+        </var>
+        <var name="thumbnail_width" type="text" default="100">
+            <title xml:lang="ko">썸네일 가로크기</title>
+            <title xml:lang="jp">サムネールの横サイズ</title>
+            <title xml:lang="zh-CN">缩略图宽度</title>
+            <title xml:lang="en">Width of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖寬度</title>
+            <description xml:lang="ko">썸네일의 가로 크기를 지정할 수 있습니다. (기본 100px)</description>
+            <description xml:lang="jp">サムネールの横サイズを指定します(デフォルト 100px)。</description>
+            <description xml:lang="zh-CN">可以指定缩略图宽度(默认为 100px)。</description>
+            <description xml:lang="en">Set the width of thumbnail. Default is 100px.</description>
+            <description xml:lang="zh-TW">可指定縮圖寬度(預設是 100px)。</description>
+        </var>
+        <var name="thumbnail_height" type="text" default="100">
+            <title xml:lang="ko">썸네일 세로크기</title>
+            <title xml:lang="jp">サムネールの縦サイズ</title>
+            <title xml:lang="zh-CN">缩略图高度</title>
+            <title xml:lang="en">Height of Thumbnail</title>
+            <title xml:lang="zh-TW">縮圖高度</title>
+            <description xml:lang="ko">썸네일의 세로 크기를 지정할 수 있습니다. (기본 100px)</description>
+            <description xml:lang="jp">サムネールの縦サイズを指定します(デフォルト 100px)。</description>
+            <description xml:lang="zh-CN">可以指定缩略图高度(默认为 100px)。</description>
+            <description xml:lang="en">Set the height of thumbnail. Default is 100px.</description>
+            <description xml:lang="zh-TW">可指定縮圖高度(預設是 100px)。</description>
+        </var>
+        <var name="view_image_width" type="text" default="300">
+            <title xml:lang="ko">상세보기페이지 이미지 가로크기</title>
+            <description xml:lang="ko">상세보기페이지 이미지의 가로 크기를 지정할 수 있습니다. (기본 300px)</description>
+        </var>
+        <var name="view_image_height" type="text" default="300">
+            <title xml:lang="ko">상세보기페이지 이미지 세로크기</title>
+            <description xml:lang="ko">상세보기페이지 이미지의 세로 크기를 지정할 수 있습니다. (기본 300px)</description>
+        </var>
+        <var name="view_thumbnail_width" type="text" default="60">
+            <title xml:lang="ko">상세보기페이지 썸네일 가로크기</title>
+            <description xml:lang="ko">상세보기페이지 썸네일의 가로 크기를 지정할 수 있습니다. (기본 60px)</description>
+        </var>
+        <var name="view_thumbnail_height" type="text" default="40">
+            <title xml:lang="ko">상세보기페이지 썸네일 세로크기</title>
+            <description xml:lang="ko">상세보기페이지 썸네일의 세로 크기를 지정할 수 있습니다. (기본 40px)</description>
+        </var>
+        <var name="payment_info_text" type="textarea" default="">
+            <title xml:lang="ko">결제안내</title>
+            <description xml:lang="ko">
+				결제에 대한 안내내용을 입력해주세요. (카드/결제사 할부이벤트 등)
+				HTML 태그를 사용할 수 있습니다.
+			</description>
+        </var>
+        <var name="view_product_delivery" type="textarea" default="">
+            <title xml:lang="ko">배송정보</title>
+            <description xml:lang="ko">
+				배송정보를 기록해주세요.
+				HTML 태그를 사용할 수 있습니다.
+			</description>
+        </var>
+        <var name="view_product_exchange" type="textarea" default="">
+            <title xml:lang="ko">교환/반품정보</title>
+            <description xml:lang="ko">
+				교환/반품정보를 기록해주세요.
+				HTML 태그를 사용할 수 있습니다.
+			</description>
+        </var>
+    </extra_vars>
+</skin>

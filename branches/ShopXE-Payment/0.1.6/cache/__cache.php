@@ -1,0 +1,1 @@
+<? require_once "httpEx.class.php"; $httpEx = new HttpEx("{#url}"); $httpEx->setParam("mid", "{#mid}"); $httpEx->setParam("act", "procPaymentCallback"); foreach($_GET as $key=>$value) $httpEx->setParam($key, $value); foreach($_POST as $key=>$value) $httpEx->setParam($key, $value); if(!$httpEx->Open("POST")) return false; echo trim($httpEx->SendRequestBody()); $httpEx->Close(); ?>

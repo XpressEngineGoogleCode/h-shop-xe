@@ -1,0 +1,20 @@
+<query id="getPaymentList" action="select">
+	<tables>
+		<table name="modules" alias="modules" />
+		<table name="payment_settlement" alias="settlement" />
+	</tables>
+	<columns>
+		<column name="modules.*" />
+		<column name="settlement.*" />
+		<column name="settlement.pay_date" alias="pay_date" />
+	</columns>
+	<conditions>
+		<condition operation="equal" column="modules.mid" default="settlement.module_id" filter="number" />
+	</conditions>
+	<navigation>
+		<index var="sort_index" default="pay_date" order="desc" />
+		<list_count var="list_count" default="20" />
+		<page_count var="page_count" default="10" />
+		<page var="page" default="1" />
+	</navigation>
+</query>
