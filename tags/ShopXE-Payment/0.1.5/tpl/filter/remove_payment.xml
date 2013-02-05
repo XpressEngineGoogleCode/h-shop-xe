@@ -1,0 +1,9 @@
+<filter name="remove_payment" module="payment" act="procPaymentAdminPaymentRemove" confirm_msg_code="confirm_delete">
+    <form>
+        <node target="module_srl" required="true" />
+	</form>
+    <response callback_func="completePaymentRemove">
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

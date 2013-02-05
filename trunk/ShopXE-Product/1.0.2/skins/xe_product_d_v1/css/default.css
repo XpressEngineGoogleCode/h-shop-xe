@@ -1,0 +1,292 @@
+@charset "utf-8";
+
+/*
+	덧니희야 - product 모듈 기본스킨 (product_d_v1)
+	수정 : 2010. 2. 16
+*/
+
+#shopxe_product .lineClear { clear:both; height:5px; }
+
+#shopxe_product .wide5 { width:5%; }
+#shopxe_product .wide10 { width:10%; }
+#shopxe_product .wide20 { width:20%; }
+#shopxe_product .wide30 { width:30%; }
+#shopxe_product .wide40 { width:40%; }
+#shopxe_product .wide50 { width:50%; }
+#shopxe_product .wide120px { width:120px; }
+
+#shopxe_product { width:100%; }
+#shopxe_product a,
+#shopxe_product a:hover,
+#shopxe_product a:visited,
+#shopxe_product a:focus { text-decoration:none; color:#767676; }
+
+/* Button */
+#shopxe_product .btn,
+#shopxe_product .btn span,
+#shopxe_product .btn a{ position:relative; vertical-align:middle; display:inline-block; height:24px; font-size:12px; line-height:24px; color:#4d4d4d; cursor:pointer; background-image:url("../img/common/btn_common_bg.gif"); background-repeat:no-repeat; text-decoration:none !important; overflow:visible; border:0; padding:0; background-color:transparent;}
+
+#shopxe_product .btn{ background-position:left top; margin-right:4px;}
+#shopxe_product .btn span,
+#shopxe_product .btn a{ left:4px; background-position:right top; padding:0 8px 0 4px;}
+
+
+/* infomationBar */
+#shopxe_product .infomationBar
+{
+	width:100%;
+	position:relative; vertical-align:middle; display:inline-block; height:28px; font-size:12px; line-height:28px;
+	color:#4d4d4d; text-decoration:none !important; overflow:visible;
+	background-color:transparent;
+	border-top:1px solid transparent;
+	border-bottom:1px solid #eeeeee;
+	margin:0px 0px 5px 0px;
+	padding:5px 0px 5px 0px;
+}
+#shopxe_product .infomationBar h3
+{
+	float:left;
+	vertical-align:middle;
+	margin:0px 5px 0px 5px;
+}
+#shopxe_product .infomationBar .productListType
+{
+	position:relative; vertical-align:middle; display:inline-block;
+	float:right;	
+	margin:0px 2px 0px 0px;
+}
+
+#shopxe_product .productHeaderAdmin { position:relative; vertical-align:middle; display:inline-block; float:right; }
+#shopxe_product .productHeaderAdmin a,
+#shopxe_product .productHeaderAdmin a:hover,
+#shopxe_product .productHeaderAdmin a:focus,
+#shopxe_product .productHeaderAdmin a:visited
+{
+	color:#555555; text-decoration:none; 
+	margin:0px 5px 0px 5px;
+}
+
+/* productCategory */
+#shopxe_product .productCategory
+{
+	position:relative; vertical-align:middle; display:inline-block; height:28px; font-size:12px; line-height:28px;
+	float:left;
+	margin:5px 0px 5px 0px;
+}
+
+/* productCategory */
+#shopxe_product .productCategory button
+{
+	vertical-align:top; height:26px; font-size:12px; line-height:20px;
+}
+
+/* productSearch */
+#shopxe_product .productSearch
+{
+	position:relative; vertical-align:middle; display:inline-block; height:28px; font-size:12px; line-height:28px;
+	float:right;
+	margin:5px 0px 5px 0px;
+}
+
+#shopxe_product .productList
+{
+	width:100%;
+	background-color:#fcfcfc;
+	border:1px solid #c9c9c9;
+	padding:20px;
+	border-collapse: collapse;
+}
+
+#shopxe_product .productList thead
+{
+	height:40px; font-size:12px; line-height:40px;
+	color:#4f4f4f; text-decoration:none !important; overflow:visible;
+	background:url(../img/common/table_top_bg.gif);
+	padding:20px 0px 20px 0px;
+}
+
+#shopxe_product .productList thead th
+{
+	text-align:center;
+}
+
+#shopxe_product .productList tbody tr
+{
+}
+#shopxe_product .productList tbody tr td
+{
+	border-bottom:1px double #eaeaea;
+	padding:20px;
+	vertical-align:middle;
+}
+#shopxe_product .productList tbody tr td .thumb
+{
+	border:2px solid #efefef;
+	padding:20px;
+	vertical-align:middle;
+}
+
+#shopxe_product .productGallery
+{
+	width:100%;
+	background-color:#fcfcfc;
+	border:1px solid #c9c9c9;
+	padding:20px;
+	border-collapse: collapse;
+}
+
+#shopxe_product .productGallery thead th
+{
+	text-align:right;
+	padding:0px 20px 0px 20px;
+}
+
+#shopxe_product .productGallery thead th .productOrder
+{
+}
+
+#shopxe_product .productGallery thead
+{
+	text-align:right;
+	height:40px; font-size:12px; line-height:40px;
+	color:#4f4f4f; text-decoration:none !important; overflow:visible;
+	background:url(../img/common/table_top_bg.gif);
+	padding:20px 0px 20px 0px;
+}
+
+#shopxe_product .productGallery tbody tr
+{
+}
+
+#shopxe_product .productGallery tbody tr td
+{
+	border-bottom:1px solid #eaeaea;
+	padding:20px;
+	vertical-align:middle;
+}
+#shopxe_product .productGallery tbody tr td .thumb
+{
+	border:2px solid #efefef;
+	padding:20px;
+	vertical-align:middle;
+}
+
+/* pagination */
+#shopxe_product .productPaginate { clear:both; text-align:center; font:bold 11px Tahoma; padding-top:8px; padding-bottom:4px; padding-top:25px; border-top:1px solid #EFEFEF; }
+#shopxe_product .productPaginate a { padding:4px 7px 4px 7px; margin: 4 0 0 0; font:bold 11px Tahoma; text-decoration:none;color:#999; border:1px solid #eee; }
+#shopxe_product .productPaginate strong { padding:4px 7px 4px 7px; font:bold 1em Tahoma; text-decoration:none; border:1px solid #c9c9c9; background:#f7f7f7; color:#555; }
+#shopxe_product .productPaginate a:hover { padding:4px 7px 4px 7px; font:bold 11px Tahoma; margin: 0 0 0 0; text-decoration:none;color:#555; border:1px solid #c9c9c9; background:#f7f7f7; }
+#shopxe_product .productPaginate a:visited { font:bold 11px Tahoma; }
+#shopxe_product .productPaginate a.prevEnd img, .pagination a.nextEnd img { margin-bottom:-2px; padding:4px 0 4px 0;}
+
+
+#shopxe_product .productBottom .leftButtonBox { float:left; }
+#shopxe_product .productBottom .rightButtonBox { float:right; }
+
+
+/* view */
+#shopxe_product .productImageBox { float:left; width:40%; text-align:center; }
+#shopxe_product .productImageBox img { border:5px solid #eaeaea; }
+#shopxe_product .productImageBox .bt { border:0px; vertical-align:baseline; }
+#shopxe_product .productImageBox .prod_thumb { border:0px; }
+
+/* BIG Button */
+#shopxe_product .bigBtn,
+#shopxe_product .bigBtn span,
+#shopxe_product .bigBtn a{ position:relative; vertical-align:middle; display:inline-block; height:60px; font-size:14px; line-height:60px; color:#4d4d4d; cursor:pointer; background-image:url("../img/common/btn_comm_big_bg.gif"); background-repeat:no-repeat; text-decoration:none !important; overflow:visible; border:0; padding:0; background-color:transparent;}
+
+#shopxe_product .bigBtn{ background-position:left top; margin-right:4px;}
+#shopxe_product .bigBtn span,
+#shopxe_product .bigBtn a{ left:4px; background-position:right top; padding:0 8px 0 4px;}
+
+#shopxe_product .productPriceBox { float:left; margin-left:10px; width:55%; }
+#shopxe_product .productPriceBox table { width:100%; }
+#shopxe_product .productPriceBox table th { width:100px; height:35px; border-top:1px dashed #eaeaea; }
+#shopxe_product .productPriceBox table td { height:35px; border-top:1px dashed #eaeaea; }
+
+#shopxe_product .productPriceBox .title { border:0; background-color:transparent; font-size:24px; font-weight:bold; color:#333; border-bottom:2px solid #4c4c4c; width:100%; }
+#shopxe_product .productPriceBox .code { border-top:1px solid #eaeaea; width:100%; font-size:12px; color:#CCCCCC; }
+
+#shopxe_product .productPriceBox .price { float:left; width:100%; font-size:14px; font-weight:bold; color:#cb1401; }
+
+#shopxe_product .productPriceBox .option { padding:5px; }
+#shopxe_product .productPriceBox .option select{ border:#CCCCCC solid 1px; }
+
+.productPriceBox .orderButtom { border:0; background-color:transparent; font-size:14px; font-weight:bold; color:#333; border-top:2px solid #4c4c4c; width:100%; }
+.productPriceBox .orderButtom img { margin:10px 0px 0px 10px; }
+
+/* delete */
+#shopxe_product .productDelete { clear:both; display:block; float:left; width:100%; font-size:11px; }
+#shopxe_product .productDelete .box{ clear:both; display:block; float:left; width:100%; height:100%; padding:10px; font-size:11px; border:1px solid #f2f2f2; background-color:#F9F9F9; }
+
+#shopxe_product .replyBoxTitle { background:url(../images/white/iconPep1.png) no-repeat left top; height:27px; vertical-align:text-bottom; font-size:14px; font-weight:bold; color:#8f8f8f; padding-left:50px;  }
+#shopxe_product .replyBox { padding:10px; color:#666666; border:1px solid #e0e1db; margin-top:0px; background:#efefef; }
+#shopxe_product .replyBox .replyItem { background-color:#FFFFFF; padding:.6em .8em .6em .6em; line-height:1.25em; clear:both; border-bottom:1px dotted #EEEEEE; list-style:none;}
+#shopxe_product .replyBox p { display:inline; margin-bottom:1em;}
+#shopxe_product .replyBox .author { float:left; padding:0 .3em 0 0; font-size:.9em; color:#3074a5; margin:0 .3em .5em 0;}
+#shopxe_product .replyBox .author a { color:#3074a5; margin-right:.3em; text-decoration:none; }
+#shopxe_product .replyBox .voted { float:left; font-size:.9em; color:#AAAAAA; margin:0 .3em .5em 1em;}
+#shopxe_product .replyBox .date { float:right; font:.8em Tahoma; color:#cccccc; margin:.3em 0 .5em 0;}
+
+#shopxe_product .replyBox .replyOption { height:20px; float:right; white-space:nowrap; margin-left:.2em;}
+#shopxe_product .replyBox .replyOption img { vertical-align:middle;}
+
+#shopxe_product .replyBox .replyContent { clear:left; }
+#shopxe_product .replyBox .replyContent p { display:block; }
+#shopxe_product .replyBox .reply { background-color:#F4F4F4; border-bottom:1px dotted #DDDDDD;}
+#shopxe_product .replyBox .replyIndent { background:url(../images/common/iconReplyArrow.gif) no-repeat .0em .3em; padding-left:1.3em;}
+
+#shopxe_product .replyBox .fileAttached { border:1px solid #EFEFEF; background-color:#F4F4F4; padding:5px; margin-top:10px; overflow:hidden;}
+#shopxe_product .replyBox .fileAttached ul { border:0; margin:0; padding:0;}
+#shopxe_product .replyBox .fileAttached h5 { font-weight:normal; color:#999999; float:left; font-size:1em; }
+#shopxe_product .replyBox .fileAttached li { padding-left:15px; display:block; float:left; white-space:nowrap; list-style:none; margin:0px 10px 5px 0; }
+#shopxe_product .replyBox .fileAttached li a { text-decoration:none; font-size:.9em; white-space:nowrap; color:#444444; }
+#shopxe_product .replyBox .fileAttached li a:visited { color:#777777;}
+
+#shopxe_product .commentButton { margin-top:.5em; }
+
+
+#shopxe_product .comment_popup_menu,
+#shopxe_product .document_popup_menu { text-align:right; background:none; background:url(../images/common/document_menu.gif) no-repeat right top; padding:0 15px 0 0; height:18px; }
+#shopxe_product .comment_popup_menu a,
+#shopxe_product .document_popup_menu a { cursor:pointer; display:inline; color:#555555; text-decoration:none; }
+
+#shopxe_product .InfoBox { border:1px solid #EFEFEF; color:#8f8f8f; width:100%; }
+#shopxe_product .InfoBox .head 
+{
+	height:40px; font-size:12px; line-height:40px;
+	color:#4f4f4f; text-decoration:none !important; overflow:visible;
+	background:url(../img/common/table_top_bg.gif);
+}
+#shopxe_product .InfoBox .head .subject{ padding-left:10px; font-size:14px; font-weight:bold; }
+#shopxe_product .InfoBox .cont{ padding:10px; font-size:12px; }
+
+#shopxe_product .productFooterText
+{
+	width:100%;
+	position:relative; vertical-align:middle; display:inline-block; height:28px; font-size:12px; line-height:28px;
+	color:#4d4d4d; text-decoration:none !important; overflow:visible;
+	background-color:transparent;
+	border-top:1px solid #eeeeee;
+	margin:0px 0px 5px 0px;
+	padding:5px 0px 5px 0px;
+}
+
+/* write */
+#shopxe_product .productWrite { clear:both; display:block; float:left; width:100%; font-size:11px; }
+#shopxe_product .productWrite .box{ height:100%; padding:10px 5px 10px 5px; font-size:11px; border:1px solid #f2f2f2; background-color:#F9F9F9; }
+#shopxe_product .productWrite .box .title
+{
+	font: bold;
+}
+#shopxe_product .productWrite .box table th
+{
+	width:120px;
+	padding:10px 5px 10px 5px;
+}
+
+#shopxe_product .productWrite .box .itemList .isub td
+{
+	padding:10px 0px 10px 0px;
+	border-top:1px solid #ddd;
+}

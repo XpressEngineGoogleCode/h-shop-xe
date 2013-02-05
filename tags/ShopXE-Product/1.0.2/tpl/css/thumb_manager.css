@@ -1,0 +1,13 @@
+
+div.thumbManager                    { height:80px; }
+div.thumbManager div.preview        { width:102px; height:74px; border:1px solid #CCCCCC; float:left; }
+div.thumbManager .fileListArea      { width:200px; height:76px; padding-left:10px; float:left; }
+div.thumbManager .fileList          { width:190px; height:76px; border:1px solid #CCCCCC;  font-size:11px; }
+div.thumbManager .fileUploadControl { margin-left:312px; }
+
+dl.thumbManagerController           { padding:0px; margin:0px; }
+dl.thumbManagerController dt        { float:left; width:70px; height:23px; line-height:23px; color:#000000; padding-left:10px; }
+dl.thumbManagerController dd input  { height:12px; line-height:23px; }
+dl.thumbManagerController dd        { position:relative; margin:0px; padding-left:80px; height:23px; line-height:23px; font-size:11px; font-family:Dotum, 돋움; letter-spacing:-1px; border-bottom:1px solid #EFEFEF; color:#666666; }
+
+

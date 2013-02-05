@@ -1,0 +1,160 @@
+<!--#include("_header.html")-->
+<!--%import("../../tpl/js/shopxe.js")-->
+
+<!--주문완료 페이지-->
+
+<div class="titleBox">
+    <div class="subject"><h1><span>결제내역 확인</span></h1></div>
+    <div class="memo">
+		<span>주문내역과 결제금액등을 정확하게 확인하시고 결제방법을 선택하여주십시요.</span>
+    </div>
+</div>
+
+<div class="lineClear"></div>
+
+<!--@if( $purchase_info ) -->
+
+<div id="shopxe_content">
+    <h1>결제확인</h1>
+    <ul class="section">
+        <li>고객님의 주문번호는 <span class="font_numeric" style="color:#7dab22; font-weight:bold;">{$purchase_info->get('purchase_srl')}</span> 번 입니다.</li>
+    </ul>
+
+	<div class="section">
+    <h2>주문내역</h2>
+    <div class="preview">
+        <table class="shopList" summary="주문내역 목록리스트">
+        <caption>주문내역 목록리스트</caption>
+        <colgroup>
+            <col width="40%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+            <col width="15%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">상품</th>
+            <th scope="col">옵션</th>
+            <th scope="col">판매금액</th>
+            <th scope="col">수량</th>
+            <th scope="col">주문금액</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!--@foreach($purchase_items as $no => $val)-->
+        {@$output_item = $val->get('item')}
+		{@$output_options = explode(',',$val->get('options'))}
+		{@$sel_options = null}
+		{@$output_price = 0}
+		<!--@foreach($output_item->options as $key1 => $val1)-->
+			<!--@if( in_array( $val1->option_srl, $output_options ) )-->
+				{@$sel_options[] = $val1}
+				{@$output_price += $val1->option_price}
+			<!--@end-->
+		<!--@end-->
+		{@$output_price += $val->get('volume')*$output_item->get('price_sale')}
+        {@$output_volume = $val->get('volume')}
+        <tr>
+            <td>{$output_item->get('title')}</td>
+			<td>
+				{@$output_price = 0}
+				<!--@foreach($sel_options as $key1 => $val1)-->
+					선택옵션 : {$val1->option_name}<!--@if($val1->option_price)--> (+{$val1->option_price}원){@$output_price += $val1->option_price}<!--@end--> <br/>
+				<!--@end-->
+			</td>
+            <td>{number_format($output_item->get('price_sale'))} 원</td>
+            <td>{number_format($output_volume)}</td>
+            <td>{number_format($output_volume*($output_item->get('price_sale')+$output_price))} 원</td>
+        </tr>
+		{@$total_price += $output_volume*($output_item->get('price_sale')+$output_price)}
+        <!--@end-->
+        </tbody>
+        </table>
+        
+        <table class="priceBox">
+            <tr>
+                <td class="total" height="32">총 주문금액 : {number_format($total_price)} 원</td>
+            </tr>
+        </table>
+    </div>
+    </div>
+
+	<div class="section">
+    <h2>결제결과</h2>
+    <div class="preview">
+        <table class="shopList" summary="">
+        <caption>결제결과</caption>
+        <colgroup>
+            <col width="30%">
+            <col width="70%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">결과</th>
+            <th scope="col">메세지</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+		<!--@if(!$webParams->result_code)-->
+            <td>결제내역이 없습니다.</td>
+            <td>아직 결제전 입니다. 통장입금시 확인까지 시간이 소요될 수 있습니다.</td>
+		<!--@else-->
+            <td>{$webParams->result_code}</td>
+            <td>{$webParams->result_message}</td>
+		<!--@end-->
+        </tr>
+        </tbody>
+        </table>
+
+		<!--@if($webParams->result_code=='0000'||$webParams->result_code=='00')-->
+        <table class="shopList" summary="">
+        <caption>결제결과</caption>
+        <colgroup>
+            <col width="10%">
+            <col width="10%">
+            <col width="20%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+            <col width="10%">
+        </colgroup>
+        <thead>
+        <tr>
+            <th scope="col">결제방식</th>
+            <th scope="col">은행/카드사</th>
+            <th scope="col">카드/계좌번호</th>
+            <th scope="col">입금자/승인번호</th>
+            <th scope="col">상품금액</th>
+            <th scope="col">할인금액</th>
+            <th scope="col">배송비</th>
+            <th scope="col">결제금액</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>{$payment_type}</td>
+            <td>{$webParams->finance_name}</td>
+            <td>{$webParams->finance_description}</td>
+            <td>{$webParams->finance_message}</td>
+			<td>{number_format($purchase_info->get('order_amount'))}원</td>
+            <td>{number_format($purchase_info->get('discount_amount'))}원</td>
+            <td>{number_format($purchase_info->get('delivery_amount'))}원</td>
+            <td>{number_format($purchase_info->get('payment_amount'))}원</td>
+        </tr>
+        </tbody>
+        </table>
+		<!--@else-->
+		<div class="lineClear"></div>
+		<div class="rightButtonBox">
+			<a href="{getURL('','mid', $mid, 'act','dispShopxePurchasePayment', 'purchase_srl', $purchase_srl)}" class="button red"><span>다시 결제하기</span></a>
+		</div>
+		<div class="lineClear"></div>
+		<!--@end-->
+     </div>
+    </div>
+</div>
+<!--@end-->
+<!--#include("_footer.html")-->

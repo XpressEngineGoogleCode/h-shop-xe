@@ -1,0 +1,9 @@
+<query id="deleteProductOptionDocumentSrl" action="delete">
+    <tables>
+        <table name="product_option" />
+    </tables>
+    <columns/>
+    <conditions>
+        <condition operation="equal" column="document_srl" var="document_srl" filter="number" notnull="notnull" />
+    </conditions>
+</query>

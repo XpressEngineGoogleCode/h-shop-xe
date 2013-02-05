@@ -1,0 +1,392 @@
+<!--#include("_header.html")-->
+
+<!--%import("../../tpl/js/shopxe.js")-->
+<!--%import("./js/purchase.js")-->
+<!--%import("./js/krzip_search.js")-->
+
+<!--%import("./filter/insert_purchase.xml")-->
+
+<!--%load_js_plugin("ui.stepper")-->
+
+<div class="titleBox">
+    <div class="subject"><h1><span>주문하기</span></h1></div>
+    <div class="memo">
+		<span>주문내역과 결제금액등을 정확하게 확인하시고 결제방법을 선택하여주십시요.</span>
+    </div>
+</div>
+
+<div class="lineClear"></div>
+
+<form action="./" method="post" onsubmit="return beforeSubmit(this); " id="purchase_form">
+<input type="hidden" name="target_var" value="" />
+<input type="hidden" name="volume_var" value="" />
+<input type="hidden" name="options_var" value="" />
+
+<div>
+<table class="shopList" summary="주문내역 목록리스트">
+<caption>주문내역 목록리스트</caption>
+<colgroup>
+    <col width="40%">
+    <col width="20%">
+    <col width="10%">
+    <col width="10%">
+    <col width="20%">
+</colgroup>
+<thead>
+<tr>
+    <th scope="col">상품</th>
+    <th scope="col">옵션</th>
+    <th scope="col">판매금액</th>
+    <th scope="col">수량</th>
+    <th scope="col">주문금액</th>
+</tr>
+</thead>
+<tbody>
+
+{@$delivery_price = $module_info->transmit}
+<!--@if($module_info->transmit_free_use == "Y")-->
+	<!--@if($module_info->transmit_free <= $total_price)-->
+		{@$module_info->transmit=0}
+	<!--@end-->
+<!--@end-->
+
+<!--@foreach($purchase_items as $no => $val)-->
+{@$output_item = $val->get('item')}
+{@$output_options = explode(',',$val->get('options'))}
+{@$sel_options = null}
+{@$output_price = 0}
+<!--@foreach($output_item->options as $key1 => $val1)-->
+	<!--@if( in_array( $val1->option_srl, $output_options ) )-->
+		{@$sel_options[] = $val1}
+		{@$output_price += $val1->option_price}
+	<!--@end-->
+<!--@end-->
+{@$output_price += $val->get('volume')*$output_item->get('price_sale')}
+{@$output_volume = $val->get('volume')}
+
+<!--@if( $val->get('options') )-->
+	{@ $tmp_option_srl = str_replace(',', '-', $val->get('options')) }
+	{@ $tmp_srl = $output_item->get('document_srl') ."_". $tmp_option_srl }
+<!--@else-->
+	{@ $tmp_srl = $output_item->get('document_srl') }
+<!--@end-->
+
+<tr>
+    <td>
+		<input type="checkbox" name="cart" checked="true" value="{$tmp_srl}" />
+
+		<!--@if($output_item->getThumbnail(70,40,'crop') == null)-->
+		<img src="img/common/img_blank.gif" width="70" height="40" />
+		<!--@else-->
+		<img src="{$output_item->getThumbnail(70,40,'crop')}" width="70" height="40" />
+		<!--@end-->
+		{$output_item->get('title')}
+	</td>
+	<td>
+		{@$output_price = 0}
+		<!--@foreach($sel_options as $key1 => $val1)-->
+			선택옵션 : {$val1->option_name}<!--@if($val1->option_price)--> (+{$val1->option_price}원){@$output_price += $val1->option_price}<!--@end--> <br/>
+		<!--@end-->
+		<input type="hidden" name="option_{$tmp_srl}" value="{$val->get('options')}" />
+	</td>
+	<td>{number_format($output_item->get('price_sale'))} 원</td>
+    <td>
+		<!--
+		<span id="volumn_{$tmp_srl}_ns" class="ui-stepper" onClick="updateValue({$no},{$output_item->get('price_sale')+$output_price},'volumn_{$tmp_srl}','{$module_info->transmit_free_use}',{$module_info->transmit_free}, {$delivery_price});">-->
+
+		<input type="text" name="volumn_{$tmp_srl}" value="{$output_volume}" class="inputTypeText w40 tRight" readonly />
+		</span>
+	</td>
+    <td>
+	<input type="text" name="a_price" id="pi{$no}" value="{number_format($output_volume*($output_item->get('price_sale')+$output_price))}" class="inputTypeTextNone" readonly /> 원
+	</td>
+</tr>
+{@$total_price += $output_volume*($output_item->get('price_sale')+$output_price)}
+<!--@end-->
+</tbody>
+</table>
+
+<table class="priceBox">
+    <tr>
+        <td class="total" height="32">총 주문금액 : <input type="text" name="total_price" value="{number_format($total_price)}" class="inputTypeTextNone" readonly /> 원</td>
+    </tr>
+</table>
+
+<!--@if($purchase_info->get('step') == 0)-->
+
+<input type="hidden" name="purchase_srl" value="{$purchase_info->get('purchase_srl')}" />
+<input type="hidden" name="order_code" value="{$purchase_info->get('order_code')}" />
+<input type="hidden" name="discount_info" value="" />
+<input type="hidden" name="discount_amount" value="0" />
+
+<div class="title_box">
+	<span class="title_subject">주문자 정보</span>
+</div>
+
+<table class="purchase">
+<tr>
+    <th scope="row" width="150px">주문자명 <img src="img/common/bu_must.gif" alt="이 항목은 반드시 기록 하셔야 합니다."></th>
+    <td>
+        <input type="text" name="o_user_name" value="{$purchase_info->get('o_user_name')}" class="inputTypeText w180" title="user_name" rel="original" />
+        <p class="description"></p>
+    </td>
+</tr>
+
+<!--@if($ignore_login)-->
+<tr>
+    <th scope="row">비밀번호 <img src="img/common/bu_must.gif" alt="이 항목은 반드시 기록 하셔야 합니다."></th>
+    <td>
+        <input type="password" name="password1" value="" class="inputTypeText w120" />
+        비밀번호 확인 : <input type="password" name="password2" value="" class="inputTypeText w120" />
+        <p class="description"></p>
+    </td>
+</tr>
+<!--@else-->
+    <input type="hidden" name="member_srl" value="{$logged_info->member_srl}" />
+    <input type="hidden" name="password1" value="1234567890" />
+    <input type="hidden" name="password2" value="1234567890" />
+    <!--@if($purchase_info->get('purchase_srl')==null)-->
+        {@$phone[0] = $m_phone[0]}
+        {@$phone[1] = $m_phone[1]}
+        {@$phone[2] = $m_phone[2]}
+
+        {@$cellular[0] = $m_cellular[0]}
+        {@$cellular[1] = $m_cellular[1]}
+        {@$cellular[2] = $m_cellular[2]}
+
+        {@$addr = $m_addr[0]}
+        {@$addr_1 = $m_addr[1]}
+    <!--@else-->
+        {@$phone = explode('-',$purchase_info->get('o_phone'))}
+        {@$cellular = explode('-',$purchase_info->get('o_cellular'))}
+        {@$addr = $purchase_info->get('r_addr')}
+        {@$addr_1 = $purchase_info->get('r_addr_1')}
+    <!--@end-->
+<!--@end-->
+<tr>
+    <th scope="row">전화번호</th>
+    <td>
+        <input type="text" name="o_phone_0" value="{$phone[0]}" class="inputTypeText w40" title="phone_0" rel="original" />
+        <input type="text" name="o_phone_1" value="{$phone[1]}" class="inputTypeText w40" title="phone_1" rel="original" />
+        <input type="text" name="o_phone_2" value="{$phone[2]}" class="inputTypeText w40" title="phone_2" rel="original" />
+        <p class="description"></p>
+    </td>
+</tr>
+<tr>
+    <th scope="row">휴대전화번호 <img src="img/common/bu_must.gif" alt="이 항목은 반드시 기록 하셔야 합니다."></th>
+    <td>
+        <input type="text" name="o_cellular_0" value="{$cellular[0]}" class="inputTypeText w40" title="cellular_0" rel="original"  />
+        <input type="text" name="o_cellular_1" value="{$cellular[1]}" class="inputTypeText w40" title="cellular_1" rel="original"  />
+        <input type="text" name="o_cellular_2" value="{$cellular[2]}" class="inputTypeText w40" title="cellular_2" rel="original"  />
+        <p class="description"></p>
+    </td>
+</tr>
+<tr>
+    <th scope="row">E-Mail <img src="img/common/bu_must.gif" alt="이 항목은 반드시 기록 하셔야 합니다."></th>
+    <td>
+        <input type="text" name="o_mail_address" value="{$purchase_info->get('o_mail_id')}@{$purchase_info->get('o_mail_host')}" class="inputTypeText w250" title="mail_address" rel="original"  />
+        <p class="description"></p>
+    </td>
+</tr>
+<input type="hidden" name="o_addr"   value="{$addr}" title="addr"   rel="original" />
+<input type="hidden" name="o_addr_1" value="{$addr_1}" title="addr_1" rel="original" />
+</table>
+
+<div class="title_box">
+	<span class="title_subject">배송지 정보</span>
+	<span class="targetBlank"><input type="checkbox" name="ordtorct_check" onclick="orCopy(this);" />&nbsp위와 동일합니다.</span>
+</div>
+
+<table class="purchase">
+    <tr>
+        <th scope="row" width="150px">받으시는분 <img src="img/common/bu_must.gif" alt="이 항목은 반드시 기록 하셔야 합니다."></th>
+        <td><input type="text" name="r_user_name" value="{$purchase_info->get('r_user_name')}" class="inputTypeText w120"  title="user_name" rel="receive" /></td>
+    </tr>
+    <tr>
+        <th scope="row">전화번호</th>
+        <td>
+        {@$phone = explode('-',$purchase_info->get('r_phone'))}
+        <input type="text" name="r_phone_0" value="{$phone[0]}" class="inputTypeText w40" title="phone_0" rel="receive" />
+        <input type="text" name="r_phone_1" value="{$phone[1]}" class="inputTypeText w40" title="phone_1" rel="receive" />
+        <input type="text" name="r_phone_2" value="{$phone[2]}" class="inputTypeText w40" title="phone_2" rel="receive" />
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">휴대전화번호</th>
+        <td>
+        {@$phone = explode('-',$purchase_info->get('r_cellular'))}
+        <input type="text" name="r_cellular_0" value="{$phone[0]}" class="inputTypeText w40" title="cellular_0" rel="receive"  />
+        <input type="text" name="r_cellular_1" value="{$phone[1]}" class="inputTypeText w40" title="cellular_1" rel="receive"  />
+        <input type="text" name="r_cellular_2" value="{$phone[2]}" class="inputTypeText w40" title="cellular_2" rel="receive"  />
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">주소</th>
+        <td>
+        <div class="krZip">
+            <div id="zone_address_1_r_addr" style="display:<!--@if($addr)-->inline<!--@else-->none<!--@end-->;">
+                <input type="text" name="r_addr" value="{$addr}" class="inputTypeText w400" title="addr" rel="receive" />
+                <a href="#" onclick="doHideKrZipList('r_addr'); return false;" class="button"><span>{$lang->cmd_cancel}</span></a>
+            </div>
+            <div id="zone_address_list_r_addr" style="display:none">
+                <select name="_tmp_address_list_r_addr" class="w300"></select>
+                <a href="#" onclick="doSelectKrZip('r_addr'); return false;" class="button"><span>{$lang->cmd_select}</span></a>
+                <a href="#" onclick="doHideKrZipList('r_addr'); return false;" class="button"><span>{$lang->cmd_cancel}</span></a>
+            </div>
+            <div id="zone_address_search_r_addr" style="display:<!--@if($addr)-->none<!--@else-->inline<!--@end-->;">
+                <input type="text" name="_tmp_address_search_r_addr" class="inputTypeText w400" value="" />
+                <a href="#" onclick="doSearchKrZip('r_addr'); return false;" class="button"><span>{$lang->cmd_search}</span></a>
+            </div>
+        
+            <div class="address2">
+                <input type="text" name="r_addr_1" value="{$addr_1}" class="inputTypeText w400" title="addr_1" rel="receive"  />
+            </div>
+            <p>
+            1. 우편주소 란에 '동명칭'을 입력하고 [검색] 버튼을 누르십시오.<br>
+            2. 동별 주소지를 선택한 후 우측 [선택] 버튼을 누르십시오.<br>
+            3. 번지주소 란에 나머지 주소사항을 입력하여 주십시오.<br>
+            </p>
+        </div>
+        </td>
+    </tr>
+    <tr>
+        <th scope="row">배송시 요청사항</th>
+        <td><textarea name="remark" class="inputTypeTextArea w400">{$purchase_info->get('remark')}</textarea></td>
+    </tr>
+</table>
+
+<div class="title_box">
+	<span class="title_subject">결제 정보</span>
+</div>
+<table class="purchase">
+    <tr>
+        <th scope="row" width="150px">결제방법선택</th>
+        <td>
+        <!--@if($module_info->shopxe_payment == null)-->
+            {$module_info->banking_text}
+            <input type="hidden" name="payment_type" value="XX" >
+        <!--@else-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'XX') > -1)-->
+                <label><input type="radio" name="payment_type" value="XX" <!--@if($purchase_info->get('payment_call')=="XX")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_xx}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'CD') > -1)-->
+                <label><input type="radio" name="payment_type" value="CD" <!--@if($purchase_info->get('payment_call')=="CD")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_cd}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'AB') > -1)-->
+                <label><input type="radio" name="payment_type" value="AB" <!--@if($purchase_info->get('payment_call')=="AB")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_ab}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'BK') > -1)-->
+                <label><input type="radio" name="payment_type" value="BK" <!--@if($purchase_info->get('payment_call')=="BK")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_bk}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'HP') > -1)-->
+                <label><input type="radio" name="payment_type" value="HP" <!--@if($purchase_info->get('payment_call')=="HP")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_hp}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, '7A') > -1)-->
+                <label><input type="radio" name="payment_type" value="7A" <!--@if($purchase_info->get('payment_call')=="7A")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_7a}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'OC') > -1)-->
+                <label><input type="radio" name="payment_type" value="OC" <!--@if($purchase_info->get('payment_call')=="OC")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_oc}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'CM') > -1)-->
+                <label><input type="radio" name="payment_type" value="CM" <!--@if($purchase_info->get('payment_call')=="CM")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_cm}</label>
+            <!--@end-->
+            <!--@if(strpos($module_info->shopxe_payment_method, 'GM') > -1)-->
+                <label><input type="radio" name="payment_type" value="GM" <!--@if($purchase_info->get('payment_call')=="GM")-->checked="checked"<!--@end--> />{$lang->shopxe_pg_gm}</label>
+            <!--@end-->
+        <!--@end-->
+        </td>
+    </tr>
+
+
+
+
+
+
+
+    <tr>
+        <th scope="row">총 주문비용</th>
+        <td>
+        <input type="text" name="order_amount" value="{$total_price}" readonly />원
+        </td>
+    </tr>
+	<!--@if($module_info->point_use == "Y")-->
+    <tr>
+        <th scope="row">포인트사용여부</th>
+        <td>
+		<p>
+		<!--@if($module_info->point_min_use <= $allow_point)-->
+        고객님의 적립금은 <span class="font_numeric">{number_format($allow_point)}P</span> 입니다. 사용하겠습니까? 
+        <input type="checkbox" name="use_point" id="use_point" onClick="chkOn(this)" rel="#point" <!--@if($purchase_info->get('discount_amount')>0)-->checked<!--@end-->/> 
+        <br />
+        <input type="text" name="sale_point" id="sale_point" onKeyDown="javascript:onlyNumber(); pointChk( this, {$allow_point} );" onKeyUp="javascript:onlyNumber(); pointChk( this, {$allow_point} );" value="{$purchase_info->get('discount_amount')}" class="inputTypeText" rel="discount" style='IME-MODE:disabled'  />
+		<!--@else-->
+		고객님의 적립금은 <span class="font_numeric">{number_format($allow_point)}P</span> 입니다. {number_format($module_info->point_min_use)}P 이상부터 사용가능합니다.
+		<!--@end-->
+		</p>
+        </td>
+    </tr>
+	<!--@else-->
+	<input type="hidden" name="sale_point" id="sale_point" value="0" rel="discount" />
+	<!--@end-->
+
+    <tr>
+        <th scope="row">배송비</th>
+        <td>
+        <input type="text" name="delivery_amount" value="{$module_info->transmit}" readonly /> 원
+        </td>
+    </tr>
+    
+    <tr>
+        <th scope="row">결제비용</th>
+        <td scope="col">
+        <input type="text" name="payment_amount" value="{$total_price+$module_info->transmit}" readonly />원
+        </td>
+    </tr>
+</table>
+
+<div class="tRight" style="margin-top:10px;">
+    <span class="button black strong"><input type="submit" value="결제하기" /></span>
+</div>
+
+<!--@else-->
+
+<table class="shopList" summary="{$lang->confirm_delete}">
+<caption>현재 주문상태</caption>
+<thead>
+<tr>
+    <th>현재 주문상태</th>
+</tr>
+</thead>
+<tbody>
+    <tr>
+        <td scope="row">배송비 : {number_format($purchase_info->get('delivery_amount'))} 원</td>
+    </tr>
+    <tr>
+        <td scope="row">주문금액 : {number_format($purchase_info->get('order_amount'))} 원</td>
+    </tr>
+    <tr>
+        <td scope="row">할인금액 : {number_format($purchase_info->get('discount_amount'))} 원</td>
+    </tr>
+    <tr>
+        <td scope="row">결제금액 : {number_format($purchase_info->get('payment_amount'))} 원</td>
+    </tr>
+    <tr height="25">
+        <td>{$oShopxeModel->getPaymentStateToString($purchase_info->get('step'))}</td>
+    </tr>
+	<tr>
+		<td class="button">
+			<span class="button"><input type="button" value="{$lang->cmd_back}" onclick="history.back(); return false;" /></span>
+		</td>
+	</tr>
+</tbody>
+</table>
+
+<!--@end-->
+</div>
+
+</form>
+
+
+<div class="lineClear"></div>
+
+<!--#include("_footer.html")-->

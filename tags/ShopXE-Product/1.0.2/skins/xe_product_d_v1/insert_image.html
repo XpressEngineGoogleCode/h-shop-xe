@@ -1,0 +1,55 @@
+<!--#include("_header.html")-->
+
+<!-- 이미지의 위/아래, 삭제와 관련된 form -->
+<form id="image_form" action="./" method="get">
+	<input type="hidden" name="document_srl" value="{$document_srl}" />
+	<input type="hidden" name="mid" value="{$module_info->mid}" />
+    <input type="hidden" name="image_srl" value="" />
+    <input type="hidden" name="mode" value="" />
+</form>
+
+    <table cellspacing="0" class="rowTable">
+    <!--@foreach($images_info as $no => $val)-->
+    <tr class="row2">
+        <th scope="row"><div>{$lang->product_img}</div></th>
+        <td colspan="2">
+        	<img src="{$val->file_path}" border="0" />
+            <form action="./" method="post" enctype="multipart/form-data" target="hidden_iframe">
+                <input type="hidden" name="image_srl" value="{htmlspecialchars($val->image_srl)}" />
+                <input type="hidden" name="at_index" value="{$val->at_index}" />
+                <input type="hidden" name="module" value="product" />
+                <input type="hidden" name="act" value="procProductDeleteImage" />
+                <span class="button"><input type="submit" value="{$lang->cmd_delete}" /></span>
+            </form>
+        </td>
+        <td>
+        	{$lang->at_index} : {$val->at_index}
+            <a href="#" onclick="doUpdateImageUpDown('{$val->image_srl}','up');return false;" title="{$lang->cmd_move_up}" class="buttonSet buttonUp"><span>{$lang->cmd_move_up}</span></a>
+            <a href="#" onclick="doUpdateImageUpDown('{$val->image_srl}','down');return false;" title="{$lang->cmd_move_up}" class="buttonSet buttonDown"><span>{$lang->cmd_move_down}</span></a>
+        </td>
+    </tr>
+    <!--@end-->
+    <tr class="row2">
+        <th scope="row"><div>{$lang->product_img_add}</div></th>
+        <td colspan="3">
+            <form action="./" method="post" enctype="multipart/form-data" target="hidden_iframe">
+                <input type="hidden" name="image_srl" value="{htmlspecialchars($product_info->product_srl)}" />
+                <input type="hidden" name="document_srl" value="{htmlspecialchars($document_srl)}" />
+                <input type="hidden" name="module" value="product" />
+                <input type="hidden" name="act" value="procProductInsertImage" />
+                <input type="file" name="image" value="" />
+                <input type="hidden" name="img_width" value="{$module_info->img_width}" />
+                <input type="hidden" name="img_height" value="{$module_info->img_height}" />
+                <span class="button"><input type="submit" value="{$lang->cmd_submit}" /></span>
+            </form>
+            <p>{$lang->product_img_add_guide} ({$module_info->img_width}px * {$module_info->img_height}px)</p>
+        </td>
+    </tr>
+    <tr>
+        <th class="button" colspan="4">
+        	<a href="{getUrl('','mid',$mid,'document_srl',$document_srl)}" class="button"><span>{$lang->cmd_back}</span></a>
+        </th>
+    </tr>
+    </table>
+<!--#include("_footer.html")-->
+<iframe name="hidden_iframe" frameborder="0" style="display:none"></iframe>

@@ -1,0 +1,6 @@
+<table name="shopxe_wish">
+    <column name="wish_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
+    <column name="member_srl" type="number" size="11" />
+    <column name="product_srl" type="number" size="11" />
+    <column name="regdate" type="date" />
+</table>

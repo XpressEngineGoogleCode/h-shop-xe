@@ -1,0 +1,65 @@
+<filter name="insert_purchase" module="shopxe" act="insertPurchase">
+    <form>
+        <node target="password1" required="true" minlength="6" maxlength="20" />
+        <node target="password2" required="true" minlength="6" maxlength="20" equalto="password1" />
+
+        <node target="o_user_name"     required="true" minlength="2" maxlength="40" />
+        <node target="o_cellular_0"    required="true" />
+        <node target="o_cellular_1"    required="true" />
+        <node target="o_cellular_2"    required="true" />
+        <node target="o_mail_address"  required="true" filter="email" />
+        <node target="r_user_name"     required="true" minlength="2" maxlength="40" />
+        <node target="r_cellular_0"    required="true" />
+        <node target="r_cellular_1"    required="true" />
+        <node target="r_cellular_2"    required="true" />
+        <node target="r_addr_1"        required="true" />
+        <node target="payment_type"    required="true" minlength="2" maxlength="3" />
+    </form>
+    <parameter>
+        <param name="target_var" target="target_var" />
+        <param name="volume_var" target="volume_var" />
+        <param name="options_var" target="options_var" />
+
+		<param name="purchase_srl"    target="purchase_srl"    />
+		<param name="order_code"    target="order_code"    />
+		
+		<param name="member_srl"      target="member_srl"      />
+		<param name="password"        target="password1"        />
+
+		<param name="payment_amount" target="payment_amount" />
+		<param name="delivery_amount" target="delivery_amount" />
+		<param name="order_amount" target="order_amount" />
+		<param name="discount_amount" target="discount_amount" />
+
+		<param name="o_user_name"     target="o_user_name"     />
+		<param name="o_phone_0"       target="o_phone_0"       />
+		<param name="o_phone_1"       target="o_phone_1"       />
+		<param name="o_phone_2"       target="o_phone_2"       />
+		<param name="o_cellular_0"    target="o_cellular_0"    />
+		<param name="o_cellular_1"    target="o_cellular_1"    />
+		<param name="o_cellular_2"    target="o_cellular_2"    />
+		<param name="o_mail_address"  target="o_mail_address"  />
+
+		<param name="r_user_name"     target="r_user_name"     />
+		<param name="r_phone_0"       target="r_phone_0"       />
+		<param name="r_phone_1"       target="r_phone_1"       />
+		<param name="r_phone_2"       target="r_phone_2"       />
+		<param name="r_cellular_0"    target="r_cellular_0"    />
+		<param name="r_cellular_1"    target="r_cellular_1"    />
+		<param name="r_cellular_2"    target="r_cellular_2"    />
+		<param name="r_mail_address"  target="r_mail_address"  />
+		<param name="r_addr"          target="r_addr"          />
+		<param name="r_addr_1"        target="r_addr_1"        />
+
+		<param name="remark"          target="remark"          />
+
+		<param name="discount_info"   target="discount_info"   />
+		<param name="payment_call"    target="payment_type"    />
+
+    </parameter>
+    <response callback_func="completeInsertPurchase">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="purchase_srl" />
+    </response>
+</filter>

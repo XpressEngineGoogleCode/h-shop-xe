@@ -1,0 +1,104 @@
+{@ $_col_count = 1; }
+
+	<table class="productGallery">
+	<thead>
+		<tr>
+			<th colspan="4">
+				<div class="productOrder">
+					<span class="btn">
+					<a href="{getUrl('sort_index','title','order_type',$order_type)}">상품명<!--@if($sort_index=='title')--><img src="./img/common/{$order_icon}" alt="" width="5" height="3" /><!--@end--></a>
+					</span>
+					<span class="btn">
+					<a href="{getUrl('sort_index','price_sale','order_type',$order_type)}">가격<!--@if($sort_index=='price_sale')--><img src="./img/common/{$order_icon}" alt="" width="5" height="3" /><!--@end--></a>
+					</span>
+				</div>
+
+			</th>
+		</tr>
+	</thead>
+	<tbody>
+
+<!--@if(!$product_list)-->
+		<tr>
+			<td colspan="4">{$lang->no_products}</td>
+		</tr>
+<!--@else-->
+
+		<tr>
+	<!--@foreach($product_list as $no => $product)-->
+		<!--@if(($_col_count%4) == 1)-->
+		</tr>
+		<tr>
+		<!--@end-->
+
+			<td>
+				<div>
+				<!--@if($product->thumbnailExists($module_info->thumbnail_width, $module_info->thumbnail_height, 'crop'))-->
+					<a href="{getUrl('document_srl',$product->oDocument->document_srl,'cpage','')}"><img src="{$product->getThumbnail($module_info->thumbnail_width, $module_info->thumbnail_height, $module_info->thumbnail_type)}" width="{$module_info->thumbnail_width}" height="{$module_info->thumbnail_height}" alt="" class="thumb" /></a>
+				<!--@else-->
+					<a href="{getUrl('document_srl',$product->oDocument->document_srl,'cpage','')}"><img src="./img/common/img_blank.gif" border="0" alt="" class="thumb" width="{$module_info->thumbnail_width}" height="{$module_info->thumbnail_height}" /></a>
+				<!--@end-->
+				</div>
+
+				<div>
+				<!--@if($grant->manager)-->
+				<input type="checkbox" name="cart" value="{$product->oDocument->document_srl}" onclick="doAddDocumentCart(this)" <!--@if($product->oDocument->isCarted())-->checked="checked"
+				<!--@end--> />
+				<a href="{getUrl('document_srl',$product->oDocument->document_srl,'cpage','')}" target="_blank"></a>
+				<!--@end-->
+									
+				<!--@if($module_info->use_category == "Y" && $product->oDocument->get('category_srl'))-->
+					[{$category_list[$product->oDocument->get('category_srl')]->title}]
+				<!--@end-->
+
+				<b><font size="2"><a href="{getUrl('document_srl',$product->oDocument->document_srl,'cpage','')}">
+				{$product->oDocument->getTitle($module_info->subject_cut_size)}</a></font></b>
+				</div>
+
+				<div>{number_format($product->oProduct->price_sale)} {$lang->monetary_unit}</div>
+				<!--@if($module_info->is_shopxe)-->    	
+					<!--@if($module_info->is_list_btn=="yes")-->
+				<div>
+					<!--@if(!$product->options)-->
+					<span class="btn">
+						<a href="#" onclick="doInsertOrderForm({$product->oDocument->document_srl},'{$module_info->mid}'); false;">주문</a>
+					</span>
+					<span class="btn">
+						<a href="#" onclick="doInsertCart({$product->oDocument->document_srl},'{$module_info->mid}'); false;">장바구니</a>
+					</span>
+					<!--@end-->
+					<span class="btn">
+						<a href="#" onclick="doInsertWish({$product->oProduct->product_srl},'{$module_info->mid}'); false;">관심</a>
+					</span>
+				</div>
+					<!--@end-->
+				<!--@end-->
+			</td>
+
+	{@ $_col_count += 1; }
+	<!--@end-->
+	{@ $_col_count -= 1; }
+	<!--@if(($_col_count%4) != 0)-->
+		<!--@for($i=0;$i<(4-($_col_count%4));$i++)-->
+			<td></td>
+		<!--@end-->
+	<!--@end-->
+		<tr>
+
+	
+
+<!--@end-->
+	</tbody>
+	</table>
+		
+<div class="productPaginate">
+    <a href="{getUrl('page','','document_srl','','division',$division,'last_division',$last_division,'entry','')}"><</a>
+    <!--@while($page_no = $page_navigation->getNextPage())-->
+        <!--@if($page == $page_no)-->
+            <strong>{$page_no}</strong> 
+        <!--@else-->
+            <a href="{getUrl('page',$page_no,'document_srl','','division',$division,'last_division',$last_division,'entry','')}">{$page_no}</a>
+        <!--@end-->
+    <!--@end-->
+        <a href="{getUrl('page',$page_navigation->last_page,'document_srl','','division',$division,'last_division',$last_division,'entry','')}">></a>
+</div>

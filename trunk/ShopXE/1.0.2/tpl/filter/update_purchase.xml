@@ -1,0 +1,42 @@
+<filter name="update_purchase" module="shopxe" act="procShopxeUpdatePurchase" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="purchase_srl" filter="number" required="true" />
+    </form>
+    <parameter>
+		<param name="purchase_srl"    target="purchase_srl"    />
+		<param name="step"    target="step"    />
+		
+		<param name="member_srl"      target="member_srl"      />
+		<param name="password"        target="password"        />
+
+		<param name="paymenet_amount" target="paymenet_amount" />
+		<param name="delivery_amount" target="delivery_amount" />
+		<param name="order_amount" target="order_amount" />
+		<param name="discount_amount" target="discount_amount" />
+
+		<param name="o_user_name"     target="o_user_name"     />
+		<param name="o_phone"       target="o_phone"       />
+		<param name="o_cellular"    target="o_cellular"    />
+		<param name="o_mail_address"  target="o_mail_address"  />
+
+		<param name="r_user_name"     target="r_user_name"     />
+		<param name="r_phone"       target="r_phone"       />
+		<param name="r_cellular"    target="r_cellular"    />
+		<param name="r_mail_address"  target="r_mail_address"  />
+		<param name="r_addr"          target="r_addr"          />
+		<param name="r_addr_1"        target="r_addr_1"        />
+
+		<param name="remark"          target="remark"          />
+
+		<param name="discount_info"   target="discount_info"   />
+		<param name="transmit_info_business" target="transmit_info_business" />
+		<param name="transmit_info_number" target="transmit_info_number" />
+		
+		<param name="payment_call"    target="payment_call"    />
+    </parameter>
+    <response callback_func="completeUpdatePurchase">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="purchase_srl" />
+    </response>
+</filter>

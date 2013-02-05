@@ -1,0 +1,86 @@
+<!--#include("./_header.html")-->
+
+<!--%import("filter/delete_purchase.xml")-->
+<!--%import("js/shopxe.admin.js")-->
+
+<form action="./" method="get" onsubmit="return procFilter(this, delete_purchase)">
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="purchase_srl" value="{$purchase_info->get('purchase_srl')}" />
+
+<h4 class="xeAdmin">{$lang->confirm_delete}</h4>
+<table cellspacing="0" class="rowTable">
+<tr>
+    <th scope="row"><div>{$lang->shopxe_purchase_srl}</div></th>
+    <td class="wide">{$purchase_info->get('purchase_srl')}</td>
+</tr>
+<tr>
+    <th scope="row"><div>{$lang->o_user_name}</div></th>
+    <td>{$purchase_info->get('o_user_name')}</td>
+</tr>
+<tr>
+    <th scope="row"><div></div></th>
+    <td>
+	
+<table cellspacing="0" class="rowTable">
+<thead>
+    <tr>
+        <th scope="col" class="half_wide"><div>{$lang->shopxe_list_head_product}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->shopxe_list_head_number}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->shopxe_list_head_price}</div></th>
+        <th scope="col" class="half_wide"><div>{$lang->shopxe_list_head_tprice}</div></th>
+        <th scope="col"><div>{$lang->shopxe_list_head_etc}</div></th>
+    </tr>
+</thead>
+<tbody>
+    <!--@if( $purchase_items == null )-->
+    <tr>
+        <td colspan="7">{$lang->shopxe_nolist}</td>
+    </tr>
+    <!--@else-->
+
+	<!--@foreach($purchase_items as $no => $val)-->
+	{@$output_item = $val->get('item')}
+	{@$output_volume = $val->get('volume')}
+	{@$total_price+=$output_volume*$output_item->get('price_sale')}
+	<tr>
+		<td>
+			<!--@if($output_item->getThumbnail(70,40,'crop') == null)-->
+				<img src="img/noimage.gif" width="70" height="40" />
+			<!--@else-->
+				<img src="{$output_item->getThumbnail(70,40,'crop')}" width="70" height="40" />
+			<!--@end-->
+			{$output_item->get('title')}
+		</td>
+		<td>{number_format($output_volume)}</td>
+		<td>{number_format($output_item->get('price_sale'))} {$lang->money_unit}</td>
+		<td>{number_format($output_volume*$output_item->get('price_sale'))} {$lang->money_unit}</td>
+		<td></td>
+	</tr>
+	<!--@end-->
+
+    <tr class="row{$cycle_idx}">
+    	<td colspan="1"></td>
+    	<td colspan="2">{$lang->shopxe_list_head_price}</td>
+    	<td colspan="2">{number_format($total_price)} {$lang->money_unit}</td>
+    </tr>
+    <!--@end-->
+</tbody>
+</table>
+
+	
+	</td>
+</tr>
+<tr>
+    <th colspan="2" class="button">
+        <span class="button black strong"><input type="submit" value="{$lang->cmd_delete}" /></span>
+        <span class="button"><input type="button" value="{$lang->cmd_back}" onclick="history.back(); return false;" /></span>
+    </th>
+</tr>
+</table>
+
+
+</form>
+
+
+
+<!--#include("./_footer.html")-->

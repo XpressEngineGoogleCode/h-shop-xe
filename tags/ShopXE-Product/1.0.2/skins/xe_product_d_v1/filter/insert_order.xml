@@ -1,0 +1,21 @@
+<filter name="insert_order" module="shopxe" act="procShopxeInsertOrder">
+    <form>
+        <node target="document_srl" required="true" filter="number" />
+        <node target="volume" required="true" filter="number" minlength="1" maxlength="100" />
+    </form>
+    <parameter>
+        <param name="document_srl" target="document_srl" />
+        <param name="option" target="option" />
+        <param name="volume" target="volume" />
+        <param name="amount" target="amount" />
+        <param name="product_price" target="product_price" />
+        <param name="insert_type" target="insert_type" />
+        <param name="shopxe_mid" target="shopxe_mid" />
+    </parameter>
+    <response callback_func="completeInsertOrder">
+        <tag name="shopxe_mid" />
+        <tag name="insert_type" />
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

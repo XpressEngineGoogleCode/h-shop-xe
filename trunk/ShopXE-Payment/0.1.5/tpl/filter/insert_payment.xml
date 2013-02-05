@@ -1,0 +1,12 @@
+<filter name="insert_payment" module="payment" act="procPaymentAdminPaymentManage" confirm_msg_code="confirm_submit">
+    <form>
+        <node target="payment_mid" required="true" />
+        <node target="current_extra" required="true" />
+        <node target="payment_description" required="true" />
+	</form>
+    <response callback_func="completePaymentRegisted">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="module_srl" />
+    </response>
+</filter>

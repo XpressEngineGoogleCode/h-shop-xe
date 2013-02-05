@@ -1,0 +1,15 @@
+<form id="{$pay_form->id}" name="{$pay_form->id}" action="{$pay_form->action}" method="post">
+<!--@foreach($pay_form->post_variable as $key=>$value)-->
+	<input type="hidden" name="{$value[name]}" id="{$value[id]}" value="{$value[value]}"  />
+<!--@end-->
+</form>
+<script type="text/javascript"> 
+	function startPayment() 
+	{ 
+		{$pay_script->callProgram} 
+	} 
+	{$pay_form->extraScript}
+</script>
+<!--@foreach($script_files as $key=>$value)-->
+<script type="text/javascript" src="{$value}"></script>
+<!--@end-->

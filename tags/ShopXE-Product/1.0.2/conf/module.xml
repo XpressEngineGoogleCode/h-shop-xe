@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<module>
+    <grants>
+        <grant name="list" default="guest">
+            <title xml:lang="ko">목록</title>
+            <title xml:lang="zh-CN">目录</title>
+            <title xml:lang="jp">リスト</title>
+            <title xml:lang="en">list</title>
+            <title xml:lang="es">Lista</title>
+            <title xml:lang="zh-TW">列表</title>
+        </grant>
+        <grant name="view" default="guest">
+            <title xml:lang="ko">열람</title>
+            <title xml:lang="zh-CN">查看</title>
+            <title xml:lang="jp">閲覧</title>
+            <title xml:lang="en">view</title>
+            <title xml:lang="es">Opinión</title>
+            <title xml:lang="zh-TW">檢視</title>
+        </grant>
+        <grant name="write_document" default="guest">
+            <title xml:lang="ko">글 작성</title>
+            <title xml:lang="zh-CN">发表新主题</title>
+            <title xml:lang="jp">書き込み作成</title>
+            <title xml:lang="en">write document</title>
+            <title xml:lang="es">Escribir el documento</title>
+            <title xml:lang="zh-TW">發表主題</title>
+        </grant>
+        <grant name="write_comment" default="guest">
+            <title xml:lang="ko">댓글 작성</title>
+            <title xml:lang="zh-CN">发表评论</title>
+            <title xml:lang="jp">コメント作成</title>
+            <title xml:lang="en">write comment</title>
+            <title xml:lang="es">Escribir comentario</title>
+            <title xml:lang="zh-TW">發表評論</title>
+        </grant>
+    </grants>
+    <permissions>
+        <permission action="dispProductAdminInsertProduct" target="manager" />
+        <permission action="dispProductAdminProductInfo" target="manager" />
+        <permission action="dispProductAdminExtraVars" target="manager" />
+        <permission action="dispProductAdminProductAdditionSetup" target="manager" />
+        <permission action="dispProductAdminSkinInfo" target="manager" />
+        <permission action="dispProductAdminListSetup" target="manager" />
+        <permission action="procProductAdminInsertProduct" target="manager" />
+        <permission action="procProductAdminInsertListConfig" target="manager" />
+
+		<permission action="procProductInsertDocument" target="manager" />
+        <permission action="procProductDeleteDocument" target="manager" />
+        <permission action="procProductDeleteFile" target="manager" />
+		<permission action="procProductInsertImage" target="manager" />
+		<permission action="procProductDeleteImage" target="manager" />
+		<permission action="procProductUpdateImage" target="manager" />
+		<permission action="procProductInsertOption" target="manager" />
+		<permission action="procProductDeleteOption" target="manager" />
+
+		<permission action="dispProductInsertImage" target="manager" />
+		<permission action="dispProductInsertOption" target="manager" />
+		<permission action="dispProductWrite" target="manager" />
+		<permission action="dispProductDelete" target="manager" />
+	</permissions>
+    <actions>
+        <action name="dispProductContent" type="view" index="true" />
+        <action name="dispProductNoticeList" type="view" />
+        <action name="dispProductContentList" type="view" />
+        <action name="dispProductContentView" type="view" />
+        <action name="dispProductCatogoryList" type="view" />
+        <action name="dispProductContentCommentList" type="view" />
+        <action name="dispProductContentFileList" type="view" />
+        <action name="dispProductInsertImage" type="view" />
+        <action name="dispProductInsertOption" type="view" />
+
+        <action name="dispProductDeleteComment" type="view" />
+        <action name="dispProductModifyComment" type="view" />
+        <action name="dispProductReplyComment" type="view" />
+
+		<!--미구현-->		
+        <action name="dispProductManageDocument" type="view" />
+
+        <action name="dispProductTagList" type="view" />
+        <action name="dispProductWrite" type="view" />
+        <action name="dispProductDelete" type="view" />
+        <action name="dispProductMessage" type="view" />
+
+        <action name="procProductInsertDocument" type="controller" />
+        <action name="procProductDeleteDocument" type="controller" />
+        <action name="procProductVoteDocument" type="controller" />
+        <action name="procProductInsertComment" type="controller" />
+        <action name="procProductDeleteComment" type="controller" />
+        <action name="procProductDeleteTrackback" type="controller" />
+        <action name="procProductVerificationPassword" type="controller" />
+        <action name="procProductDeleteFile" type="controller" />
+        <action name="procProductUploadFile" type="controller" />
+        <action name="procProductDownloadFile" type="controller" />
+        <action name="procProductInsertImage" type="controller" />
+        <action name="procProductDeleteImage" type="controller" />
+        <action name="procProductUpdateImage" type="controller" />
+        <action name="procProductInsertOption" type="controller" />
+        <action name="procProductDeleteOption" type="controller" />
+
+        <action name="dispProductAdminContent" type="view" standalone="true" admin_index="true" />
+        <action name="dispProductAdminProductInfo" type="view" standalone="true" />
+        <action name="dispProductAdminExtraVars" type="view" standalone="true" />
+        <action name="dispProductAdminProductAdditionSetup" type="view" standalone="true" />
+        <action name="dispProductAdminInsertProduct" type="view" standalone="true" setup_index="true" />
+        <action name="dispProductAdminDeleteProduct" type="view" standalone="true" />
+        <action name="dispProductAdminSkinInfo" type="view" standalone="true" />
+        <action name="dispProductAdminGrantInfo" type="view" standalone="true" />
+        <action name="dispProductAdminListSetup" type="view" standalone="true" />
+        <action name="dispProductAdminCategoryInfo" type="view" />
+        <action name="procProductAdminInsertProduct" type="controller" standalone="true" />
+        <action name="procProductAdminDeleteProduct" type="controller" standalone="true" />
+        <action name="procProductAdminInsertListConfig" type="controller" standalone="true" />
+    </actions>
+</module>

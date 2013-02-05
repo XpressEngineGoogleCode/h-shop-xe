@@ -1,0 +1,15 @@
+<filter name="delete_option" module="product" act="procProductDeleteOption">
+    <form>
+        <node target="option_srl" required="true" />
+    </form>
+	<parameter>
+		<param name="option_srl" target="option_srl" />
+	</parameter>
+    <response callback_func="completeDeleteOption">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="page" />
+        <tag name="mid" />
+        <tag name="document_srl" />
+    </response>
+</filter>

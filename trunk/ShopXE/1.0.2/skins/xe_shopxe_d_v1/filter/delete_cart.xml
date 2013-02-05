@@ -1,0 +1,13 @@
+<filter name="delete_cart" module="shopxe" act="deleteCartCookie">
+	<form />
+    <parameter>
+        <param name="target_var" target="target_var" />
+        <param name="volume_var" target="volume_var" />
+    </parameter>
+    <response callback_func="completeDeleteCart">
+        <tag name="shopxe_mid" />
+        <tag name="insert_type" />
+        <tag name="error" />
+        <tag name="message" />
+    </response>
+</filter>

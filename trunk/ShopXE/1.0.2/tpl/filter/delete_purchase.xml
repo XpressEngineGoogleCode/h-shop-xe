@@ -1,0 +1,13 @@
+<filter name="delete_purchase" module="shopxe" act="procShopxeDeletePurchase" confirm_msg_code="confirm_delete">
+    <form>
+        <node target="purchase_srl" required="true" />
+    </form>
+    <parameter>
+        <param name="purchase_srl" target="purchase_srl" />
+    </parameter>
+    <response callback_func="completeDeletePurchase">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="page" />
+    </response>
+</filter>

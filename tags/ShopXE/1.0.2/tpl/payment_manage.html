@@ -1,0 +1,118 @@
+<!--#include("./_header.html")-->
+
+<!--%import("filter/update_payment.xml")-->
+<!--%import("js/shopxe.admin.js")-->
+<form action="./" method="get" enctype="text/plain" onsubmit="return procFilter(this, update_payment)">
+<input type="hidden" name="page" value="{$page}" />
+<input type="hidden" name="order_srl" value="{$settle_info->get('order_srl')}" />
+<input type="hidden" name="system_srl" value="{$settle_info->get('system_srl')}" />
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_system_code}</div></th>
+		<td colspan="3">{$settle_info->get('system_srl')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_result_code}</div></th>
+		<td colspan="3">{$settle_info->get('result_code')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_result_message}</div></th>
+		<td colspan="3">{$settle_info->get('result_message')}</td>
+</tr>
+</table>
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_type}</div></th>
+		<td colspan="3">
+        	<select name="call_type">
+            <!--@foreach($paymentType as $key=>$val)-->
+            	<option value="{$key}" <!--@if($key==$settle_info->get('call_type'))-->selected="selected"<!--@end-->>{$val}</option>
+            <!--@end-->
+            </select>
+		</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>결제상태</div></th>
+		<td colspan="3">
+        	<select name="current_state">
+				<option value="null" <!--@if(null==$settle_info->get('current_state'))-->selected="selected"<!--@end-->>결제대기</option>
+				<option value="1" <!--@if(1==$settle_info->get('current_state'))-->selected="selected"<!--@end-->>결제실패</option>
+				<option value="2" <!--@if(2==$settle_info->get('current_state'))-->selected="selected"<!--@end-->>결제완료</option>
+				<option value="3" <!--@if(3==$settle_info->get('current_state'))-->selected="selected"<!--@end-->>결제취소(환불)</option>
+			</select>
+		</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_name}</div></th>
+		<td colspan="3">
+			<input type="text" name="finance_name" value="{$settle_info->get('finance_name')}" class="inputTypeText w200" />
+		</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_desc}</div></th>
+		<td colspan="3">
+			<input type="text" name="finance_description" value="{$settle_info->get('finance_description')}" class="inputTypeText w200" />
+		</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_msg}</div></th>
+		<td colspan="3">
+			<input type="text" name="finance_message" value="{$settle_info->get('finance_message')}" class="inputTypeText w200" />
+		</td>
+</tr>
+</table>
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_order_srl}</div></th>
+		<td colspan="3">
+			{$settle_info->get('order_srl')}
+			<p>
+			<a href="{getUrl('purchase_srl',$settle_info->get('order_srl'),'act','dispShopxeAdminPurchaseManage')}">주문정보 바로가기</a>
+			</p>
+		</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_name')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_call}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_call')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_mail}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_mail')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_addr}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_addr')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_item_code}</div></th>
+		<td colspan="3">{$settle_info->get('buy_code')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_item_info}</div></th>
+		<td colspan="3">{$settle_info->get('buy_info')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_amount}</div></th>
+		<td colspan="3">{number_format($settle_info->get('buy_amount'))} {$lang->money_unit}</td>
+</tr>
+</table>
+
+<table cellspacing="0" class="rowTable">
+<tr>
+    <th colspan="2" class="button">
+        <span class="button black strong"><input type="submit" value="{$lang->cmd_modify}" /></span>
+        <span class="button"><input type="button" value="{$lang->cmd_back}" onclick="history.back(); return false;" /></span>
+    </th>
+</tr>
+</table>
+
+</form>
+
+<!--#include("./_footer.html")-->
