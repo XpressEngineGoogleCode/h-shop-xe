@@ -403,7 +403,6 @@
 			
 			$oTemplate = &TemplateHandler::getInstance();
 			Context::set('master_image',$master_image);
-			Context::set('file_config',$oFileModel->getFileConfig($module_srl));
             $tpl = $oTemplate->compile($this->module_path.'tpl', 'thumb_manager.html');
 			return $tpl;
 		}
