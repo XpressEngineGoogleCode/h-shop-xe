@@ -1,0 +1,92 @@
+<!--#include("_header.html")-->
+<!--%import("../../tpl/js/shopxe.js")-->
+
+<!--%import("./js/wish.js")-->
+<!--%import("./filter/insert_cart.xml")-->
+<!--%import("./filter/delete_wish.xml")-->
+
+<!--%load_js_plugin("ui.stepper")-->
+
+<!--관심상품조회-->
+<form action="./" method="post" id="wish_form" onsubmit="return false;">
+<input type="hidden" name="target_var" value="" />
+<input type="hidden" name="volume_var" value="" />
+
+<div class="titleBox">
+    <div class="subject"><h1><span>관심상품</span></h1></div>
+    <div class="memo"><span>관심상품으로 등록하신 상품의 목록입니다.</span></div>
+</div>
+
+<div class="lineClear"></div>
+
+<table class="shopList" summary="">
+<caption>관심상품 목록리스트</caption>
+<colgroup>
+    <col width="10%">
+    <col width="40%">
+    <col width="25%">
+    <col width="25%">
+</colgroup>
+<thead>
+<tr>
+    <th scope="col"><input type="checkbox" onclick="XE.checkboxToggleAll({ doClick:true }); return false;"/></th>
+    <th scope="col">상품명</th>
+    <th scope="col">판매금액</th>
+    <th scope="col">-</th>
+</tr>
+</thead>
+<tbody>
+<!--@if(!$wish_list)-->
+<tr>
+    <td colspan="4">
+        저장된 관심상품이 존재하지 않습니다.
+    </td>
+</tr>
+<!--@end-->
+
+<!--@foreach($wish_list as $no => $productItem)-->
+<tr>
+    <td><input type="checkbox" name="cart" value="{$productItem->get('document_srl')}" checked="true" /></td>
+    <td>
+        <div style="width:70px; height:40px;border:1px solid #EFEFEF; float:left;">
+            <a href="{getUrl('','mid',$vid,'document_srl',$productItem->get('document_srl'))}">
+            <!--@if($productItem->getThumbnail(70,40,'crop') == null)-->
+            <img src="img/common/img_blank.gif" width="70" height="40" />
+            <!--@else-->
+            <img src="{$productItem->getThumbnail(70,40,'crop')}" width="70" height="40" />
+            <!--@end-->
+            </a>
+        </div>
+        <div style="float:left; padding-top:15px; padding-left:10px;">
+        <a href="{getUrl('','mid',$vid,'document_srl',$productItem->get('document_srl'))}">{$productItem->oDocument->get('title')}</a>
+        </div>
+    </td>
+    <td>{number_format($productItem->get('price_sale'))} 원</td>
+    <td>
+        <div>
+        <a href="#" onClick="doWishDelete({$productItem->get('product_srl')}); doInsertSingleCart('{$productItem->get('document_srl')}');" class="button white"><span>장바구니 이동</span></a>
+        </div>
+        <div>
+        <a href="#" onClick="doWishDelete({$productItem->get('product_srl')})" class="button white"><span>삭제</span></a>
+        </div>
+    </td>
+</tr>
+<!--@end-->
+</tbody>
+</table>
+</form>
+
+<div class="lineClear"></div>
+
+<!-- 버튼 -->
+<span class="rightButtonBox">
+	<!--@if($wish_list)-->
+	<a href="#" onClick="doAction(delete_wish);" class="button red"><span>삭제</span></a>
+	<!--@end-->
+	<a href="{getUrl('','mid',$remid)}" class="button white"><span>계속쇼핑하기</span></a>
+	<!--@if($wish_list)-->
+	<a href="#" onClick="doAction(insert_cart);" class="button green"><span>장바구니 이동</span></a>
+	<!--@end-->
+</span>
+
+<!--#include("_footer.html")-->

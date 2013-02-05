@@ -1,0 +1,97 @@
+<!--%import("../../tpl/js/product.js")-->
+
+<!--@if(!$module_info->colorset)-->
+    {@$module_info->colorset = "white"}
+<!--@end-->
+
+<!--%import("css/default.css")-->
+
+<!--// 스킨기본값 지정 -->
+    <!--@if($module_info->default_style == null)-->
+        {@ $module_info->default_style = 'gallery'; }
+    <!--@end-->
+    <!--@if($module_info->thumbnail_width == null)-->
+        {@ $module_info->thumbnail_width = 100; }
+    <!--@end-->
+    <!--@if($module_info->thumbnail_height == null)-->
+        {@ $module_info->thumbnail_height = 100; }
+    <!--@end-->
+    <!--@if($module_info->view_image_width == null)-->
+        {@ $module_info->view_image_width = 300; }
+    <!--@end-->
+    <!--@if($module_info->view_image_height == null)-->
+        {@ $module_info->view_image_height = 300; }
+    <!--@end-->
+    <!--@if($module_info->view_thumbnail_width == null)-->
+        {@ $module_info->view_thumbnail_width = 60; }
+    <!--@end-->
+    <!--@if($module_info->view_thumbnail_height == null)-->
+        {@ $module_info->view_thumbnail_height = 40; }
+    <!--@end-->
+
+<!--// 정렬에 따른 아이콘 미리 지정 -->
+    <!--@if($order_type == "desc")-->
+        {@ $order_icon = "buttonDescending.gif"; }
+        {@ $order_type = "asc"; }
+    <!--@else-->
+        {@ $order_icon = "buttonAscending.gif"; }
+        {@ $order_type = "desc"; }
+    <!--@end-->
+
+<div id="shopxe_product">
+
+	<div class="infomationBar">
+
+		<!--@if($module_info->header_text)-->
+		<h3>{$module_info->header_text}</h3>
+		<!--@end-->
+		
+		<!--@if($grant->manager && $module_info->display_setup_button != 'N')-->
+		<div class="productHeaderAdmin">
+			<a href="{getUrl('act','dispProductAdminProductInfo')}" title="{$lang->cmd_setup}" class="button blue"><span>{$lang->cmd_setup}</span></a>
+		</div>
+		<!--@end-->
+
+		<div class="productListType">
+			<a href="{getUrl('listStyle','gallery')}"><img src="img/common/btn_gallery.gif"></a>
+			<a href="{getUrl('listStyle','list')}"><img src="img/common/btn_list.gif"></a>
+		</div>
+
+	</div>
+
+	<!--@if($oDocument->isExists()==false)-->
+
+	<!-- 분류 -->
+	<!--@if($module_info->use_category == "Y")-->
+	<div class="productCategory">
+		<select id="board_category">
+			<option value="">{$lang->category}</option>
+			<!--@foreach($category_list as $val)-->
+			<option value="{$val->category_srl}" <!--@if($category==$val->category_srl)-->selected="selected"<!--@end-->>{str_repeat("&nbsp;&nbsp;",$val->depth)} {$val->title} <!--@if($val->document_count)-->({$val->document_count})<!--@end--></option>
+			<!--@end-->
+		</select>
+        <span class="btn"><a href="#" onclick="doChangeCategory(); return false;">Go</a></span>
+	</div>
+	<!--@end-->
+	<!-- 분류 -->
+
+	<!-- 검색 -->
+	<!--@if($grant->view)-->
+	<div class="productSearch">
+		<form action="{getUrl()}" method="get" onsubmit="return procFilter(this, search);" id="fo_search">
+			<input type="hidden" name="mid" value="{$mid}" />
+			<input type="hidden" name="category" value="{$category}" />
+			<input type="hidden" name="search_target" value="title" />
+			<input type="hidden" name="listStyle" value="{$module_info->default_style}" />
+
+			<input type="text" name="search_keyword" value="{htmlspecialchars($search_keyword)}" class="inputTypeText"/>
+			<span class="btn"><a href="#" onclick="xGetElementById('fo_search').submit(); return false;">검색</a></span>
+			<span class="btn"><a href="{getUrl('','mid',$mid,'listStyle',$listStyle)}">초기화</a></span>
+		</form>
+	</div>
+
+	<div class="lineClear"></div>
+	<!--@end-->
+	<!-- 검색 -->
+
+	<!--@end-->

@@ -1,0 +1,40 @@
+<table name="shopxe_purchase">
+
+    <column name="purchase_srl"    type="number"  size="11"  notnull="notnull" primary_key="primary_key" index="idx_purchase_srl" />
+	<column name="order_code"      type="varchar" size="255" />
+	<column name="step"            type="number"  size="11"  />
+
+	<column name="member_srl"      type="number"  size="11" />
+    <column name="password"        type="varchar" size="255" />
+
+	<column name="order_amount"    type="number"  size="11" />
+    <column name="discount_amount" type="number"  size="11" />
+    <column name="delivery_amount" type="number"  size="11" />
+    <column name="payment_amount"  type="number"  size="11" />
+
+	<column name="o_user_name"     type="varchar" size="255" />
+	<column name="o_phone"         type="varchar" size="255" />
+	<column name="o_cellular"      type="varchar" size="255" />
+	<column name="o_mail_id"       type="varchar" size="255" />
+	<column name="o_mail_host"     type="varchar" size="255" />
+	
+	<column name="r_user_name"     type="varchar" size="255" />
+	<column name="r_phone"         type="varchar" size="255" />
+	<column name="r_cellular"      type="varchar" size="255" />
+	<column name="r_mail_id"       type="varchar" size="255" />
+	<column name="r_mail_host"     type="varchar" size="255" />
+	<column name="r_addr"          type="varchar" size="255" />
+	<column name="r_addr_1"        type="varchar" size="255" />
+
+	<column name="remark"          type="text" />
+
+    <column name="discount_info"   type="text" />
+    <column name="transmit_info"   type="text" />
+
+    <column name="created_at"      type="date" default="curdate()" notnull="notnull" />
+    <column name="updated_at"      type="date" default="curdate()" />
+
+	<column name="payment_srl"     type="number"  size="11" />
+	<column name="payment_call"    type="varchar" size="255" />
+	
+</table>

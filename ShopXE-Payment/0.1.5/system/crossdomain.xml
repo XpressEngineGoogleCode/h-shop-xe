@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cross-domain-policy>
+    <site-control permitted-cross-domain-policies="all"/>
+	<allow-http-request-headers-from domain ="*" headers ="*" secure ="false" />
+	<allow-access-from domain="*" />
+	<allow-access-from domain="*.iwebmall.co.kr" />
+</cross-domain-policy>

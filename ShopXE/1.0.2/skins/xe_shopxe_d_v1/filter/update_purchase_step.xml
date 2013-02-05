@@ -1,0 +1,15 @@
+<filter name="update_purchase_step" module="shopxe" act="procShopxeUpdatePurchase" confirm_msg_code="confirm_submit"> 
+    <form>
+        <node target="purchase_srl" filter="number" required="true" />
+        <node target="step" filter="number" required="true" />
+    </form>
+    <parameter>
+		<param name="purchase_srl"    target="purchase_srl"    />
+		<param name="step"    target="step"    />
+    </parameter>
+    <response callback_func="completeUpdatePurchaseStep">
+        <tag name="error" />
+        <tag name="message" />
+        <tag name="purchase_srl" />
+    </response>
+</filter>

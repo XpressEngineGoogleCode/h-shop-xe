@@ -1,0 +1,71 @@
+
+<!--#include("inc_PaymentHeader.html")-->
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_system_code}</div></th>
+		<td colspan="3">{$settle_info->get('system_srl')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_result_code}</div></th>
+		<td colspan="3">{$settle_info->get('result_code')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_result_message}</div></th>
+		<td colspan="3">{$settle_info->get('result_message')}</td>
+</tr>
+</table>
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_type}</div></th>
+		<td colspan="3">{$settle_info->getType()}</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_name}</div></th>
+		<td colspan="3">{$settle_info->get('finance_name')}	</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_desc}</div></th>
+		<td colspan="3">{$settle_info->get('finance_description')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row"><div>{$lang->payment_finence_msg}</div></th>
+		<td colspan="3">{$settle_info->get('finance_message')}</td>
+</tr>
+</table>
+
+<table cellspacing="0" class="rowTable">
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_order_srl}</div></th>
+		<td colspan="3">{$settle_info->get('order_srl')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_name')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_call}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_call')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_mail}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_mail')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_buyer_addr}</div></th>
+		<td colspan="3">{$settle_info->get('buyer_addr')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_item_code}</div></th>
+		<td colspan="3">{$settle_info->get('buy_code')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_item_info}</div></th>
+		<td colspan="3">{$settle_info->get('buy_info')}</td>
+</tr>
+<tr class="row2">
+		<th scope="row" style="width:150px;"><div>{$lang->payment_amount}</div></th>
+		<td colspan="3">{number_format($settle_info->get('buy_amount'))}</td>
+</tr>
+</table>

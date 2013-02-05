@@ -1,0 +1,1 @@
+결제모듈 사용법은 http://shop.xpressengine.net/18430612 에 정리되어 있습니다.
