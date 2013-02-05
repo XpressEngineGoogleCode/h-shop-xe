@@ -1,8 +1,0 @@
-<table name="shopxe_purchase_item">
-    <column name="purchase_item_srl" type="number" size="11" notnull="notnull" primary_key="primary_key" />
-    <column name="purchase_srl" type="number" size="11" notnull="notnull" />
-    <column name="document_srl" type="number" size="11" notnull="notnull" />
-	<column name="option" type="text" />
-    <column name="volume" type="number" size="11" />
-    <column name="amount" type="number" size="11" />
-</table>
