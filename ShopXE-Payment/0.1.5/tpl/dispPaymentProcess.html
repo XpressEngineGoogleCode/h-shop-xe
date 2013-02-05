@@ -1,8 +1,0 @@
-<form id="{$formName}" action="{$formAction}" method="post">
-    <!--@foreach($formContents as $no => $val)-->
-    <input type="hidden" name="{$val[name]}" id="{$val[id]}" value="{$val[value]}" /> 
-    <!--@end-->
-</form>
-<script type="text/javascript">
-	jQuery(document).ready(function (){ jQuery("#{$formName}").submit(); });
-</script>
